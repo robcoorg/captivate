@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
+  <title>Captivate | MedSpa Automation Agency</title>
+  <meta name="description" content="Stop buying software. Start building systems. MedSpa automation that fills calendars, reduces no-shows, and lowers front-desk overhead." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0A0F14;
+      --bg-card: rgba(255,255,255,0.04);
+      --accent-teal: #00C9B8;
+      --accent-rose: #E8A598;
+      --text-primary: #F0EDE8;
+      --text-muted: #8A8F96;
+      --border-glass: rgba(255,255,255,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+    /* Glassmorphism card */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(10,15,20,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent-teal); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .btn-primary {
+      background: var(--accent-teal);
+      color: #0A0F14;
+      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: opacity 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-teal);
+      background: rgba(0,201,184,0.06);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 1.5rem 5rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(0,201,184,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,201,184,0.1);
+      border: 1px solid rgba(0,201,184,0.25);
+      color: var(--accent-teal);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent-teal);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Floating proof card */
+    .proof-card {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .proof-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 8px #22c55e; }
+      50% { box-shadow: 0 0 16px #22c55e, 0 0 30px rgba(34,197,94,0.3); }
+    }
+
+    /* Trust strip */
+    .trust-strip {
+      border-top: 1px solid var(--border-glass);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 1.25rem 2rem;
+      overflow: hidden;
+    }
+    .trust-track {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      animation: marquee 25s linear infinite;
+      width: max-content;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .trust-item i { color: var(--accent-teal); width: 14px; height: 14px; }
+
+    /* Section layout */
+    .section {
+      padding: 6rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      color: var(--accent-teal);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    /* ROI Calculator */
+    .calc-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    @media (max-width: 768px) {
+      .calc-container { grid-template-columns: 1fr; }
+    }
+
+    .slider-group { margin-bottom: 1.75rem; }
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+      font-size: 0.875rem;
+    }
+    .slider-label span:first-child { color: var(--text-muted); }
+    .slider-label span:last-child { color: var(--text-primary); font-weight: 600; }
+
+    input[type=range] {
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      height: 4px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,201,184,0.5);
+    }
+
+    .calc-result {
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+
+    .calc-result.phase-loss {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .calc-result.phase-recovery {
+      background: rgba(0,201,184,0.06);
+      border: 1px solid rgba(0,201,184,0.2);
+    }
+
+    .calc-result-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .phase-loss .calc-result-label { color: #ef4444; }
+    .phase-recovery .calc-result-label { color: var(--accent-teal); }
+
+    .calc-result-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .phase-loss .calc-result-amount { color: #ef4444; }
+    .phase-recovery .calc-result-amount { color: var(--accent-teal); }
+
+    .calc-result-sub {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 220px;
+    }
+
+    /* Client portal mockup */
+    .portal-mockup {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .portal-header {
+      background: rgba(255,255,255,0.04);
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .portal-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .portal-body { padding: 1.5rem; }
+
+    .sprint-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+    .sprint-label { color: var(--text-muted); }
+    .sprint-value { color: var(--text-primary); font-weight: 600; }
+
+    .progress-bar-track {
+      background: rgba(255,255,255,0.07);
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-teal), #00e5d4);
+      width: 0%;
+      transition: width 1.5s ease;
+    }
+    .progress-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .portal-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .portal-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
+      padding: 0.875rem;
+      text-align: center;
+    }
+    .portal-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+    }
+    .portal-stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Services tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-glass);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      border-color: var(--accent-teal);
+      color: var(--accent-teal);
+      background: rgba(0,201,184,0.08);
+    }
+    .tab-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,0.15);
+      color: var(--text-primary);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 640px) {
+      .tab-panel.active { grid-template-columns: 1fr; }
+    }
+
+    .service-card {
+      padding: 1.5rem;
+      border-radius: 14px;
+    }
+    .service-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      background: rgba(0,201,184,0.1);
+    }
+    .service-icon svg { width: 20px; height: 20px; color: var(--accent-teal); stroke: var(--accent-teal); }
+    .service-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5rem;
+    }
+    .service-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    .pricing-card {
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+    }
+    .pricing-card.featured {
+      background: rgba(0,201,184,0.07);
+      border: 1px solid rgba(0,201,184,0.3);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-teal);
+      color: #0A0F14;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .pricing-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .pricing-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-amount span { font-size: 1.5rem; }
+    .pricing-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .pricing-features { list-style: none; margin-bottom: 1.75rem; }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+    .pricing-features li .check { color: var(--accent-teal); flex-shrink: 0; margin-top: 1px; }
+    .pricing-features li .featured-li { color: var(--text-primary); }
+
+    /* Calendly */
+    #calendly-container {
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .calendly-placeholder {
+      text-align: center;
+      padding: 3rem;
+    }
+
+    /* Intake Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,15,20,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: #0f1822;
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 500px;
+      transform: translateY(20px);
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.06); }
+
+    .modal h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .modal-sub {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-glass);
+      color: var(--text-primary);
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--accent-teal);
+    }
+    .form-select option { background: #0f1822; }
+    .form-input.error { border-color: var(--accent-rose); }
+    .form-error {
+      color: var(--accent-rose);
+      font-size: 0.78rem;
+      margin-top: 0.35rem;
+      display: none;
+    }
+    .form-error.show { display: block; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-glass);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    footer .footer-logo span { color: var(--accent-teal); }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 0.75rem; }
+    footer a:hover { color: var(--accent-teal); }
+
+    /* Mobile nav */
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+    }
+
+    /* Glow accents */
+    .teal-glow { text-shadow: 0 0 24px rgba(0,201,184,0.4); }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Captivate<span>.</span></a>
+  <div class="nav-links">
+    <a href="#calculator">ROI Calculator</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#calendly">Book a Call</a>
+    <a href="#pricing" class="btn-primary" onclick="openModal(); return false;">Get Started</a>
+  </div>
+  <button class="nav-mobile-toggle" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('open')">
+    <i data-lucide="menu" style="width:22px;height:22px"></i>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-badge">
+    <i data-lucide="zap" style="width:13px;height:13px"></i>
+    MedSpa Automation Agency
+  </div>
+  <h1>Your MedSpa.<br /><em>Running Itself.</em></h1>
+  <p class="hero-sub">Stop Buying Software. Start Building Systems. We build automation that fills your calendar, eliminates no-shows, and frees your front desk — in 14 days.</p>
+  <div class="hero-ctas">
+    <a href="#calculator" class="btn-primary">See Your Revenue Loss →</a>
+    <a href="#pricing" class="btn-outline">View Pricing</a>
+  </div>
+
+  <!-- Floating proof card -->
+  <div class="proof-card glass-card reveal">
+    <div class="proof-dot"></div>
+    <div style="text-align:left">
+      <div style="font-size:0.82rem;font-weight:600;color:var(--text-primary)">3 bookings confirmed while you slept</div>
+      <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">Automated front desk · Just now</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="trust-strip">
+  <div class="trust-track" id="trust-track">
+    <div class="trust-item"><i data-lucide="map-pin"></i> Trusted by MedSpas in TX · FL · CA</div>
+    <div class="trust-item"><i data-lucide="clock"></i> Avg. setup time: 11 days</div>
+    <div class="trust-item"><i data-lucide="trending-up"></i> 1 system replaces 3 staff hours per day</div>
+    <div class="trust-item"><i data-lucide="calendar-check"></i> Built in 14 days. Runs for years.</div>
+    <div class="trust-item"><i data-lucide="moon"></i> Your front desk doesn't sleep. Neither does ours.</div>
+    <div class="trust-item"><i data-lucide="zap"></i> 3 bookings confirmed while you slept</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="trust-item"><i data-lucide="map-pin"></i> Trusted by MedSpas in TX · FL · CA</div>
+    <div class="trust-item"><i data-lucide="clock"></i> Avg. setup time: 11 days</div>
+    <div class="trust-item"><i data-lucide="trending-up"></i> 1 system replaces 3 staff hours per day</div>
+    <div class="trust-item"><i data-lucide="calendar-check"></i> Built in 14 days. Runs for years.</div>
+    <div class="trust-item"><i data-lucide="moon"></i> Your front desk doesn't sleep. Neither does ours.</div>
+    <div class="trust-item"><i data-lucide="zap"></i> 3 bookings confirmed while you slept</div>
+  </div>
+</div>
+
+<!-- ============ ROI CALCULATOR ============ -->
+<section class="section" id="calculator">
+  <div class="reveal">
+    <span class="section-label">ROI Calculator</span>
+    <h2 class="section-title">Find Out What You're Losing<br />Every Single Year</h2>
+    <p class="section-sub">Move the sliders to reveal your hidden revenue loss — then see how much automation can recover.</p>
+  </div>
+
+  <div class="calc-container">
+    <div class="glass-card reveal" style="padding:2rem;border-radius:16px">
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Monthly Bookings</span>
+          <span id="bookings-val">120</span>
+        </div>
+        <input type="range" id="slider-bookings" min="20" max="500" value="120" step="5" oninput="calcUpdate()" />
+      </div>
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>No-Show Rate</span>
+          <span id="noshow-val">18%</span>
+        </div>
+        <input type="range" id="slider-noshow" min="5" max="40" value="18" step="1" oninput="calcUpdate()" />
+      </div>
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Admin Hours / Week</span>
+          <span id="admin-val">12 hrs</span>
+        </div>
+        <input type="range" id="slider-admin" min="2" max="60" value="12" step="1" oninput="calcUpdate()" />
+      </div>
+      <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem;line-height:1.6">
+        Formula based on avg. booking value of $120 and admin staff at $25/hr.
+      </div>
+    </div>
+
+    <div class="calc-result glass-card reveal" id="calc-result">
+      <div class="calc-result-label" id="calc-label">Move a slider to reveal your loss</div>
+      <div class="calc-result-amount" id="calc-amount" style="color:var(--text-muted)">$—</div>
+      <div class="calc-result-sub" id="calc-sub">Adjust the sliders on the left to calculate.</div>
+      <div id="calc-cta" style="margin-top:1.5rem;display:none">
+        <a href="#pricing" class="btn-primary" onclick="openModal(); return false;">Recover This Revenue →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENT PORTAL MOCKUP ============ -->
+<section style="padding:0 1.5rem 6rem;max-width:1100px;margin:0 auto;">
+  <div class="reveal" style="text-align:center;margin-bottom:2.5rem">
+    <span class="section-label">Client Portal</span>
+    <h2 class="section-title">Watch Your System Get Built</h2>
+    <p class="section-sub" style="margin:0 auto">A live 14-day sprint view. No black boxes — see every milestone as it ships.</p>
+  </div>
+
+  <div class="portal-mockup reveal" style="max-width:720px;margin:0 auto;">
+    <div class="portal-header">
+      <div class="portal-dot" style="background:#ef4444"></div>
+      <div class="portal-dot" style="background:#f59e0b;margin-left:4px"></div>
+      <div class="portal-dot" style="background:#22c55e;margin-left:4px"></div>
+      <span style="font-size:0.78rem;color:var(--text-muted);margin-left:0.75rem">captivate.icu / portal / active-sprint</span>
+    </div>
+    <div class="portal-body">
+      <div class="sprint-row">
+        <span class="sprint-label">Sprint</span>
+        <span class="sprint-value">Day 9 of 14</span>
+      </div>
+      <div class="sprint-row">
+        <span class="sprint-label">Status</span>
+        <span class="sprint-value" style="color:#22c55e">● On Track</span>
+      </div>
+      <div class="sprint-row">
+        <span class="sprint-label">System</span>
+        <span class="sprint-value">Booking Automation + Front Desk OS</span>
+      </div>
+
+      <div style="margin-top:1.25rem">
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;font-size:0.82rem">
+          <span style="color:var(--text-muted)">Sprint Progress</span>
+          <span id="progress-pct" style="color:var(--accent-teal);font-weight:600">0%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="portal-stats">
+        <div class="portal-stat">
+          <div class="portal-stat-val">+34</div>
+          <div class="portal-stat-label">Bookings This Month</div>
+        </div>
+        <div class="portal-stat">
+          <div class="portal-stat-val">−61%</div>
+          <div class="portal-stat-label">No-Show Rate Drop</div>
+        </div>
+        <div class="portal-stat">
+          <div class="portal-stat-val">18 hrs</div>
+          <div class="portal-stat-label">Admin Time Saved</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES TABS ============ -->
+<section class="section" id="services">
+  <div class="reveal" style="margin-bottom:2.5rem">
+    <span class="section-label">What We Build</span>
+    <h2 class="section-title">Systems That Run<br />While You Sleep</h2>
+  </div>
+
+  <div class="tabs-nav reveal">
+    <button class="tab-btn active" onclick="switchTab('booking')">Booking</button>
+    <button class="tab-btn" onclick="switchTab('retention')">Retention</button>
+    <button class="tab-btn" onclick="switchTab('frontdesk')">Front Desk</button>
+  </div>
+
+  <div id="tab-booking" class="tab-panel active reveal">
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="calendar-plus" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Smart Booking Flows</h4>
+      <p>Automated intake, confirmation, and pre-appointment sequences that convert leads 24/7 — no receptionist required.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="bell-ring" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>No-Show Prevention</h4>
+      <p>Multi-touch SMS + email reminder sequences timed to your appointment windows. Avg. 60% no-show reduction in week one.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="refresh-cw" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Rebooking Automation</h4>
+      <p>Automatically re-engage cancelled appointments with smart reschedule links and limited-time incentives.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="link" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Integration Layer</h4>
+      <p>Connects to your existing booking software (Jane App, Mindbody, Vagaro) without replacing what works.</p>
+    </div>
+  </div>
+
+  <div id="tab-retention" class="tab-panel reveal">
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="heart" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Post-Visit Sequences</h4>
+      <p>Automated follow-ups that request reviews, offer rebooking, and nurture client loyalty on autopilot.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="gift" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Membership & Loyalty</h4>
+      <p>Drip sequences that convert one-time clients into monthly membership holders — compounding revenue.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="star" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Review Generation</h4>
+      <p>Smart timing and personalized ask sequences that dramatically increase 5-star Google reviews.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="bar-chart-2" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>LTV Dashboards</h4>
+      <p>See real-time client lifetime value, churn risk signals, and upsell opportunities in one view.</p>
+    </div>
+  </div>
+
+  <div id="tab-frontdesk" class="tab-panel reveal">
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="bot" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>AI Receptionist</h4>
+      <p>Answers FAQs, books appointments, and captures leads via SMS and webchat around the clock.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="file-text" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Intake Form Automation</h4>
+      <p>Digital consent, health history, and pre-visit forms delivered and collected automatically before arrival.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="message-square" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>Unified Inbox</h4>
+      <p>All channels — SMS, email, Instagram DMs — consolidated for your team with AI-drafted replies.</p>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon"><i data-lucide="shield-check" style="width:20px;height:20px;stroke:var(--accent-teal)"></i></div>
+      <h4>HIPAA-Safe Workflows</h4>
+      <p>Every system is built with compliance in mind. PHI stays protected while automation runs freely.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section" id="pricing">
+  <div class="reveal" style="text-align:center">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">One Investment.<br />Systems That Compound.</h2>
+    <p class="section-sub" style="margin:0 auto 0">No monthly SaaS fees. No retainers. One-time build — runs for years.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Quick Win -->
+    <div class="pricing-card glass-card reveal">
+      <div class="pricing-name">Quick Win</div>
+      <div class="pricing-amount"><span>$</span>1,497</div>
+      <p class="pricing-desc">One focused automation system. Fastest path to ROI — deployed in under 2 weeks.</p>
+      <ul class="pricing-features">
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span>1 Core automation system</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span>Booking, Retention, or Front Desk</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span>14-day sprint delivery</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span>Client portal access</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span>30-day post-launch support</span></li>
+      </ul>
+      <button class="btn-outline" style="width:100%" onclick="openModal()">Get Started</button>
+    </div>
+
+    <!-- Full MedSpa OS -->
+    <div class="pricing-card featured reveal" style="position:relative">
+      <div class="featured-badge">Most Popular</div>
+      <div class="pricing-name">Full MedSpa OS</div>
+      <div class="pricing-amount" style="color:var(--accent-teal)"><span>$</span>3,997</div>
+      <p class="pricing-desc">The complete operating system for your MedSpa. Every system, fully integrated and tuned to your workflows.</p>
+      <ul class="pricing-features">
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span class="featured-li">All 3 automation systems</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span class="featured-li">AI receptionist + unified inbox</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span class="featured-li">Full integration layer</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span class="featured-li">LTV + no-show dashboards</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span class="featured-li">90-day post-launch support</span></li>
+        <li><i data-lucide="check" class="check" style="width:15px;height:15px"></i> <span class="featured-li">Quarterly system audit</span></li>
+      </ul>
+      <button class="btn-primary" style="width:100%" onclick="openModal()">Get Your MedSpa OS</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDLY ============ -->
+<section class="section" id="calendly" style="text-align:center">
+  <div class="reveal">
+    <span class="section-label">Book a Call</span>
+    <h2 class="section-title">Let's Build Your System</h2>
+    <p class="section-sub" style="margin:0 auto 2.5rem" id="calendly-micro">
+      Book a 20-minute strategy call. We'll map out exactly which automation would create the biggest immediate impact for your MedSpa.
+    </p>
+  </div>
+  <div id="calendly-container" class="reveal">
+    <div class="calendly-placeholder glass-card" style="border-radius:16px;width:100%;max-width:700px;margin:0 auto;padding:3rem">
+      <i data-lucide="calendar" style="width:48px;height:48px;stroke:var(--accent-teal);margin:0 auto 1rem"></i>
+      <h3 style="font-size:1.3rem;margin-bottom:0.5rem">20-Minute Strategy Call</h3>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem">No hard sell. Just a clear picture of what automation can do for your numbers.</p>
+      <a href="https://captivate.icu" class="btn-primary" style="font-size:1rem;padding:0.85rem 2rem">Schedule Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-logo">Captivate<span>.</span></div>
+  <p style="margin-bottom:1rem">MedSpa automation agency. Built in TX · FL · CA.</p>
+  <div>
+    <a href="#calculator">Calculator</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#calendly">Book a Call</a>
+  </div>
+  <p style="margin-top:1.5rem;font-size:0.78rem">© 2026 Captivate. All rights reserved.</p>
+</footer>
+
+<!-- ============ INTAKE MODAL ============ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Get Started Intake Form">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close modal">
+      <i data-lucide="x" style="width:18px;height:18px"></i>
+    </button>
+    <h3>Let's Get Started</h3>
+    <p class="modal-sub">Tell us about your MedSpa and we'll reach out within 24 hours.</p>
+
+    <form id="intake-form" onsubmit="submitForm(event)" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="f-name">Your Name</label>
+        <input class="form-input" type="text" id="f-name" placeholder="Jane Smith" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-medspa">MedSpa Name</label>
+        <input class="form-input" type="text" id="f-medspa" placeholder="Glow Aesthetics" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-system">System You Need</label>
+        <select class="form-select" id="f-system" required>
+          <option value="">Select a system…</option>
+          <option value="booking">Booking Automation</option>
+          <option value="retention">Retention Automation</option>
+          <option value="frontdesk">Front Desk Automation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-loom">Loom Video URL <span style="color:var(--text-muted);font-weight:400;text-transform:none">(optional)</span></label>
+        <input class="form-input" type="url" id="f-loom" placeholder="https://loom.com/share/..." />
+        <div class="form-error" id="loom-error">Please use a valid Loom URL (loom.com or www.loom.com)</div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:0.875rem;font-size:1rem;margin-top:0.5rem" id="submit-btn">
+        Submit & We'll Be In Touch →
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+  // Lucide icons init
+  lucide.createIcons();
+
+  // ── Navbar scroll effect ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Scroll reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── ROI Calculator ──
+  let calcInteracted = false;
+  let calcPhase = null;
+  let countUpInstance = null;
+
+  function calcUpdate() {
+    const bookings = +document.getElementById('slider-bookings').value;
+    const noShowRate = +document.getElementById('slider-noshow').value;
+    const adminHours = +document.getElementById('slider-admin').value;
+
+    document.getElementById('bookings-val').textContent = bookings;
+    document.getElementById('noshow-val').textContent = noShowRate + '%';
+    document.getElementById('admin-val').textContent = adminHours + ' hrs';
+
+    const avgBookingValue = 120;
+    const noShowLoss = (bookings * (noShowRate / 100)) * avgBookingValue * 12;
+    const adminLoss = adminHours * 52 * 25;
+    const totalLoss = noShowLoss + adminLoss;
+    window.calculatedLoss = totalLoss;
+
+    const recoverable = Math.round(totalLoss * 0.72);
+    const resultEl = document.getElementById('calc-result');
+    const labelEl = document.getElementById('calc-label');
+    const amountEl = document.getElementById('calc-amount');
+    const subEl = document.getElementById('calc-sub');
+    const ctaEl = document.getElementById('calc-cta');
+
+    if (!calcInteracted) {
+      calcInteracted = true;
+      // Phase 1: show loss in red
+      resultEl.className = 'calc-result phase-loss glass-card';
+      labelEl.textContent = 'Annual Revenue Walking Out the Door';
+      subEl.textContent = 'No-show losses + admin overhead, every year.';
+      ctaEl.style.display = 'none';
+
+      if (countUpInstance) countUpInstance.reset();
+      countUpInstance = new countUp.CountUp('calc-amount', totalLoss, {
+        prefix: '$',
+        separator: ',',
+        duration: 2,
+      });
+      countUpInstance.start();
+
+      // Phase 2 after 2.8s: teal recovery crossfade
+      setTimeout(() => {
+        resultEl.className = 'calc-result phase-recovery glass-card';
+        labelEl.textContent = 'Recoverable With Automation';
+        subEl.textContent = 'Based on typical client results after 90 days.';
+        ctaEl.style.display = 'block';
+
+        countUpInstance = new countUp.CountUp('calc-amount', recoverable, {
+          prefix: '$',
+          separator: ',',
+          duration: 1.8,
+        });
+        countUpInstance.start();
+
+        // Update Calendly micro-copy
+        if (window.calculatedLoss > 0) {
+          const micro = document.getElementById('calendly-micro');
+          micro.innerHTML = `You're leaving an estimated <strong style="color:var(--accent-teal)">$${window.calculatedLoss.toLocaleString()}</strong> on the table annually. Let's fix that in 20 minutes.`;
+        }
+      }, 2800);
+    } else {
+      // Already interacted — just update numbers live
+      if (countUpInstance) {
+        const target = calcPhase === 'recovery' ? recoverable : totalLoss;
+        countUpInstance = new countUp.CountUp('calc-amount', target, { prefix: '$', separator: ',', duration: 0.6 });
+        countUpInstance.start();
+      }
+    }
+    calcPhase = 'loss';
+  }
+
+  // ── Client portal progress bar ──
+  const portalSection = document.querySelector('.portal-mockup');
+  const progressFill = document.getElementById('progress-fill');
+  const progressPct = document.getElementById('progress-pct');
+  let progressAnimated = false;
+
+  const portalObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !progressAnimated) {
+      progressAnimated = true;
+      progressFill.style.width = '42%';
+      // Animate percentage counter
+      let pct = 0;
+      const interval = setInterval(() => {
+        pct++;
+        progressPct.textContent = pct + '%';
+        if (pct >= 42) clearInterval(interval);
+      }, 30);
+    }
+  }, { threshold: 0.4 });
+  portalObserver.observe(portalSection);
+
+  // ── Service tabs ──
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      const tabs = ['booking', 'retention', 'frontdesk'];
+      btn.classList.toggle('active', tabs[i] === tab);
+    });
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    document.getElementById('tab-' + tab).classList.add('active');
+  }
+
+  // ── Modal ──
+  const overlay = document.getElementById('modal-overlay');
+  const modal = document.getElementById('modal');
+  let previouslyFocused = null;
+
+  function openModal() {
+    previouslyFocused = document.activeElement;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => modal.querySelector('input').focus(), 300);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (previouslyFocused) previouslyFocused.focus();
+  }
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    // Focus trap
+    if (e.key === 'Tab' && overlay.classList.contains('open')) {
+      const focusable = modal.querySelectorAll('button, input, select, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+    }
+  });
+
+  // ── Loom URL validation ──
+  function isValidLoom(url) {
+    if (!url) return true; // optional
+    return /^https:\/\/(www\.)?loom\.com\//.test(url);
+  }
+
+  // ── Form submit ──
+  function submitForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const medspa = document.getElementById('f-medspa').value.trim();
+    const system = document.getElementById('f-system').value;
+    const loom = document.getElementById('f-loom').value.trim();
+    const loomError = document.getElementById('loom-error');
+    const loomInput = document.getElementById('f-loom');
+
+    if (!name || !medspa || !system) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (!isValidLoom(loom)) {
+      loomInput.classList.add('error');
+      loomError.classList.add('show');
+      loomInput.focus();
+      return;
+    } else {
+      loomInput.classList.remove('error');
+      loomError.classList.remove('show');
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = '✓ Submitted! We\'ll be in touch within 24 hours.';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    setTimeout(() => closeModal(), 2500);
+  }
+
+  document.getElementById('f-loom').addEventListener('input', function() {
+    if (isValidLoom(this.value.trim())) {
+      this.classList.remove('error');
+      document.getElementById('loom-error').classList.remove('show');
+    }
+  });
+
+  // ── Calendly lazy load ──
+  const calendlySection = document.getElementById('calendly');
+  let calendlyLoaded = false;
+  const calendlyObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !calendlyLoaded) {
+      calendlyLoaded = true;
+      // Calendly script injected here when your Calendly URL is ready
+      // const script = document.createElement('script');
+      // script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      // document.head.appendChild(script);
+    }
+  }, { threshold: 0.2 });
+  calendlyObserver.observe(calendlySection);
+</script>
+</body>
+</html>
