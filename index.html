@@ -375,16 +375,17 @@
 
     /* Client portal mockup */
     .portal-mockup {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border-glass);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 16px;
       overflow: hidden;
       margin-top: 3rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
     }
     .portal-header {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.07);
       padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--border-glass);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -429,6 +430,9 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-top: 1.5rem;
+    }
+    @media (max-width: 480px) {
+      .portal-stats { grid-template-columns: 1fr 1fr; }
     }
     .portal-stat {
       background: var(--bg-card);
@@ -722,6 +726,23 @@
     @media (max-width: 767px) {
       .nav-links { display: none; }
       .nav-mobile-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10,15,20,0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-glass);
+        padding: 1.25rem 2rem 1.75rem;
+        gap: 1.1rem;
+      }
+      .nav-links.open a { font-size: 1rem; }
+      .nav-links.open .btn-primary { width: 100%; text-align: center; margin-top: 0.25rem; }
     }
 
     /* Glow accents */
@@ -740,7 +761,7 @@
     <a href="#calendly">Book a Call</a>
     <a href="#pricing" class="btn-primary" onclick="openModal(); return false;">Get Started</a>
   </div>
-  <button class="nav-mobile-toggle" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('open')">
+  <button class="nav-mobile-toggle" aria-label="Menu" onclick="this.previousElementSibling.classList.toggle('open')">
     <i data-lucide="menu" style="width:22px;height:22px"></i>
   </button>
 </nav>
@@ -1074,6 +1095,11 @@
           <option value="booking">Booking Automation</option>
           <option value="retention">Retention Automation</option>
           <option value="frontdesk">Front Desk Automation</option>
+          <option value="bundle">Booking + Retention Bundle</option>
+          <option value="full">Full MedSpa OS (All 3 Systems)</option>
+          <option value="all">All</option>
+          <option value="unsure">Not Sure — Help Me Choose</option>
+          <option value="curious">Just Curious</option>
         </select>
       </div>
       <div class="form-group">
@@ -1261,7 +1287,11 @@
   }
 
   // ── Form submit ──
-  function submitForm(e) {
+  // To receive emails: go to https://formspree.io, sign up free with robs46859@gmail.com,
+  // create a new form, and replace FORMSPREE_FORM_ID below with your form's ID (e.g. "xpwzabcd").
+  const FORMSPREE_FORM_ID = 'FORMSPREE_FORM_ID';
+
+  async function submitForm(e) {
     e.preventDefault();
     const name = document.getElementById('f-name').value.trim();
     const medspa = document.getElementById('f-medspa').value.trim();
@@ -1269,6 +1299,7 @@
     const loom = document.getElementById('f-loom').value.trim();
     const loomError = document.getElementById('loom-error');
     const loomInput = document.getElementById('f-loom');
+    const btn = document.getElementById('submit-btn');
 
     if (!name || !medspa || !system) {
       alert('Please fill in all required fields.');
@@ -1285,12 +1316,28 @@
       loomError.classList.remove('show');
     }
 
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = '✓ Submitted! We\'ll be in touch within 24 hours.';
+    btn.textContent = 'Sending…';
     btn.disabled = true;
-    btn.style.opacity = '0.7';
 
-    setTimeout(() => closeModal(), 2500);
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, medspa, system, loom: loom || 'Not provided' })
+      });
+
+      if (res.ok) {
+        btn.textContent = '✓ Submitted! We\'ll be in touch within 24 hours.';
+        btn.style.opacity = '0.7';
+        setTimeout(() => closeModal(), 2500);
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      btn.textContent = 'Submit & We\'ll Be In Touch →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at robs46859@gmail.com');
+    }
   }
 
   document.getElementById('f-loom').addEventListener('input', function() {
