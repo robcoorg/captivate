@@ -1089,6 +1089,10 @@
         <input class="form-input" type="text" id="f-medspa" placeholder="Glow Aesthetics" required />
       </div>
       <div class="form-group">
+        <label class="form-label" for="f-email">Email Address</label>
+        <input class="form-input" type="email" id="f-email" placeholder="jane@glowaesthetics.com" required />
+      </div>
+      <div class="form-group">
         <label class="form-label" for="f-system">System You Need</label>
         <select class="form-select" id="f-system" required>
           <option value="">Select a system…</option>
@@ -1295,13 +1299,14 @@
     e.preventDefault();
     const name = document.getElementById('f-name').value.trim();
     const medspa = document.getElementById('f-medspa').value.trim();
+    const email = document.getElementById('f-email').value.trim();
     const system = document.getElementById('f-system').value;
     const loom = document.getElementById('f-loom').value.trim();
     const loomError = document.getElementById('loom-error');
     const loomInput = document.getElementById('f-loom');
     const btn = document.getElementById('submit-btn');
 
-    if (!name || !medspa || !system) {
+    if (!name || !medspa || !email || !system) {
       alert('Please fill in all required fields.');
       return;
     }
@@ -1323,7 +1328,7 @@
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, medspa, system, loom: loom || 'Not provided' })
+        body: JSON.stringify({ name, medspa, email, system, loom: loom || 'Not provided' })
       });
 
       if (res.ok) {
