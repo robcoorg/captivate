@@ -4,87 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solutions — Captivate</title>
+  <meta name="description" content="Captivate solutions for MedSpas: phased implementation from foundation to full practice transformation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .solutions-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-      margin-bottom: 80px;
-    }
-    .solution-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: var(--accent-primary);
-      color: white;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .check-list {
-      list-style: none;
-      margin: 30px 0;
-      flex-grow: 1;
-    }
-    .check-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 15px;
-      font-size: 0.95rem;
-    }
-    .check-list svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--accent-primary);
-      stroke-width: 2;
-      fill: none;
-      flex-shrink: 0;
-    }
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 40px;
-      background-color: white;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border-divider);
-    }
-    .comparison-table th, .comparison-table td {
-      padding: 20px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-divider);
-    }
-    .comparison-table th {
-      background-color: var(--bg-alt);
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .comparison-table tr:last-child td {
-      border-bottom: none;
-    }
-    @media (max-width: 768px) {
-      .solutions-grid { grid-template-columns: 1fr; }
-    }
+    .solutions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 80px; }
+    .solution-card { position: relative; display: flex; flex-direction: column; height: 100%; }
+    .badge { position: absolute; top: 20px; right: 20px; background-color: var(--accent-primary); color: white; padding: 6px 18px; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .check-list { list-style: none; margin: 30px 0; flex-grow: 1; }
+    .check-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 0.95rem; color: var(--text-secondary); }
+    .check-list svg { width: 20px; height: 20px; stroke: var(--accent-primary); stroke-width: 2; fill: none; flex-shrink: 0; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 40px; background-color: white; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-divider); }
+    .comparison-table th, .comparison-table td { padding: 20px; text-align: left; border-bottom: 1px solid var(--border-divider); font-size: 0.95rem; }
+    .comparison-table th { background-color: var(--bg-alt); font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 768px) { .solutions-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
+
     <!-- Navigation -->
     <nav>
       <div class="container nav-container">
@@ -97,7 +38,7 @@
           <a href="#" class="disabled" title="Coming Soon">Sign In</a>
         </div>
         <div class="nav-cta">
-          <a href="contact.html" class="btn btn-primary">Get Started</a>
+          <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
         </div>
         <button class="hamburger" aria-label="Toggle Menu">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -109,15 +50,15 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        <a href="contact.html" class="btn btn-primary">Get Started</a>
+        <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
       </div>
     </nav>
 
     <!-- Hero -->
     <section>
-      <div class="container" style="text-align: center;">
+      <div class="container" style="text-align: center; max-width: 800px;">
         <h1 class="fade-in">A Path for Every Stage of Growth</h1>
-        <p class="fade-in">Whether you're looking for one focused improvement or a complete practice transformation, we'll meet you where you are.</p>
+        <p class="fade-in" style="font-size: 1.15rem;">Whether you need focused relief in one area or a complete operational transformation, we meet you where you are and build from there.</p>
       </div>
     </section>
 
@@ -125,33 +66,34 @@
     <section class="alt-bg">
       <div class="container">
         <div class="solutions-grid">
-          <!-- Card 1 -->
+          <!-- Card 1: Foundation -->
           <div class="card solution-card fade-in">
-            <h3>First Step</h3>
+            <h3>Foundation</h3>
             <p class="italic-serif" style="color: var(--accent-primary); margin-bottom: 15px;">One Core System. Immediate Relief.</p>
-            <p>Start with the single area where your practice needs the most support right now. We'll set it up together in a focused two-week engagement, then stay with you through the first month to make sure it's working.</p>
+            <p>Start with the single area where your practice needs the most support right now. We set it up together in a focused two-week engagement, then stay with you through the first month to make sure it holds.</p>
             <ul class="check-list">
               <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> One core practice system</li>
               <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 14-day setup and launch</li>
               <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 30-day post-launch support</li>
               <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated onboarding session</li>
             </ul>
-            <a href="contact.html" class="btn btn-primary" style="text-align: center;">Get Started</a>
+            <a href="contact.html" class="btn btn-primary" style="text-align: center;">Book a Strategy Call</a>
           </div>
-          <!-- Card 2 -->
+
+          <!-- Card 2: Full Partnership -->
           <div class="card solution-card fade-in">
-            <div class="badge">Most Popular</div>
+            <div class="badge">Recommended</div>
             <h3>Full Practice Partnership</h3>
-            <p class="italic-serif" style="color: var(--accent-primary); margin-bottom: 15px;">Complete Support. Lasting Growth.</p>
-            <p>All three practice systems working together as a unified foundation for your business. Includes a dedicated patient intake coordinator, shared team inbox, performance dashboards, and 90 days of hands-on support.</p>
+            <p class="italic-serif" style="color: var(--accent-primary); margin-bottom: 15px;">Complete Transformation. Lasting Growth.</p>
+            <p>All systems working together as a unified foundation. Includes physician oversight workflows, intelligent scheduling, lead conversion, performance dashboards, and 90 days of hands-on strategic support.</p>
             <ul class="check-list">
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> All three practice systems</li>
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated intake support and unified inbox</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> All practice systems unified</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Physician oversight &amp; compliance built in</li>
               <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Performance dashboards and reporting</li>
-              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 90-day hands-on partnership</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 90-day strategic partnership</li>
               <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Quarterly performance review</li>
             </ul>
-            <a href="contact.html" class="btn btn-primary" style="text-align: center;">Get Started</a>
+            <a href="contact.html" class="btn btn-primary" style="text-align: center;">Book a Strategy Call</a>
           </div>
         </div>
 
@@ -161,57 +103,26 @@
             <thead>
               <tr>
                 <th>What's Included</th>
-                <th>First Step</th>
-                <th>Full Practice Partnership</th>
+                <th>Foundation</th>
+                <th>Full Partnership</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Core Practice Systems</td>
-                <td>1 system</td>
-                <td>All 3 systems</td>
-              </tr>
-              <tr>
-                <td>Dedicated Intake Support</td>
-                <td>—</td>
-                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
-              </tr>
-              <tr>
-                <td>Unified Team Inbox</td>
-                <td>—</td>
-                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
-              </tr>
-              <tr>
-                <td>Performance Dashboards</td>
-                <td>—</td>
-                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
-              </tr>
-              <tr>
-                <td>Setup Timeline</td>
-                <td>14 days</td>
-                <td>14 days</td>
-              </tr>
-              <tr>
-                <td>Ongoing Support</td>
-                <td>30 days</td>
-                <td>90 days</td>
-              </tr>
-              <tr>
-                <td>Quarterly Practice Review</td>
-                <td>—</td>
-                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
-              </tr>
-              <tr>
-                <td>Dedicated Onboarding</td>
-                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
-                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
-              </tr>
+              <tr><td>Core Practice Systems</td><td>1 system</td><td>All systems</td></tr>
+              <tr><td>Physician Oversight Workflows</td><td>—</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td></tr>
+              <tr><td>Intelligent Scheduling</td><td>—</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td></tr>
+              <tr><td>Lead Conversion Engine</td><td>—</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td></tr>
+              <tr><td>Performance Dashboards</td><td>—</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td></tr>
+              <tr><td>Setup Timeline</td><td>14 days</td><td>14 days</td></tr>
+              <tr><td>Ongoing Support</td><td>30 days</td><td>90 days</td></tr>
+              <tr><td>Quarterly Practice Review</td><td>—</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td></tr>
+              <tr><td>Dedicated Onboarding</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td><td style="color: var(--accent-primary); font-weight: bold;">&#10003;</td></tr>
             </tbody>
           </table>
         </div>
 
         <div style="text-align: center; margin-top: 80px;" class="fade-in">
-          <h3 style="margin-bottom: 20px;">Not sure which is right for you? Let's talk it through.</h3>
+          <h3 style="margin-bottom: 20px;">Not sure which path is right? Let's talk it through.</h3>
           <a href="contact.html" class="btn btn-primary">Book a Free Consultation</a>
         </div>
       </div>
@@ -223,7 +134,7 @@
         <div class="footer-grid">
           <div class="footer-col">
             <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
-            <p style="margin-top: 15px;">Your partner in aesthetic excellence.</p>
+            <p style="margin-top: 15px;">The operating system for modern MedSpas.</p>
           </div>
           <div class="footer-col">
             <h4>Quick Links</h4>
@@ -236,17 +147,17 @@
             </ul>
           </div>
           <div class="footer-col">
-            <h4>What We Do</h4>
+            <h4>Capabilities</h4>
             <ul class="footer-links">
-              <li><a href="features.html#workflows">Practice Workflows</a></li>
-              <li><a href="features.html#patient-journeys">Patient Care</a></li>
-              <li><a href="features.html#compliance">Compliance Support</a></li>
-              <li><a href="features.html#revenue">Growth Strategy</a></li>
+              <li><a href="features.html#compliance">Physician Oversight</a></li>
+              <li><a href="features.html#workflows">Smart Scheduling</a></li>
+              <li><a href="features.html#patient-journeys">Lead Conversion</a></li>
+              <li><a href="features.html#revenue">Growth Analytics</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>Connect</h4>
-            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
           </div>
         </div>
         <div class="footer-bottom">
@@ -258,8 +169,8 @@
         </div>
       </div>
     </footer>
-  </div>
 
+  </div>
   <script src="js/main.js"></script>
 </body>
 </html>
