@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Captivate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-form-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-divider {
+      height: 1px;
+      background-color: var(--border-divider);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Navigation -->
+    <nav>
+      <div class="container nav-container">
+        <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
+        <div class="nav-links">
+          <a href="features.html">Features</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="#" class="disabled" title="Coming Soon">Sign In</a>
+        </div>
+        <div class="nav-cta">
+          <a href="contact.html" class="btn btn-primary">Get Started</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="mobile-menu">
+        <a href="features.html">Features</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="#" class="disabled" title="Coming Soon">Sign In</a>
+        <a href="contact.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section>
+      <div class="container" style="text-align: center;">
+        <h1 class="fade-in">Let's Build Something Beautiful</h1>
+        <p class="fade-in">Tell us about your practice and we'll show you what's possible.</p>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="alt-bg">
+      <div class="container">
+        <div class="card contact-form-container fade-in">
+          <form action="https://formsubmit.co/rob46859@gmail.com" method="POST">
+            <!-- FormSubmit configuration -->
+            <input type="hidden" name="_next" value="https://captivate.icu/thankyou.html">
+            <input type="hidden" name="_subject" value="New Captivate Inquiry">
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_captcha" value="true">
+
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="jane@yourpractice.com">
+            </div>
+
+            <div class="form-group">
+              <label for="practice">Practice Name *</label>
+              <input type="text" id="practice" name="practice" required placeholder="Radiance MedSpa">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+            </div>
+
+            <div class="form-group">
+              <label for="interest">I'm interested in...</label>
+              <select id="interest" name="interest">
+                <option value="Quick Win">Quick Win — One Core System</option>
+                <option value="Full MedSpa OS">Full MedSpa OS — Complete Platform</option>
+                <option value="Not Sure Yet">Not Sure Yet — Help Me Decide</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us about your practice and what challenges you're facing..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+
+          <div class="form-divider"></div>
+
+          <div style="text-align: center;">
+            <p style="margin-bottom: 20px;">Prefer to talk? Book a free 20-minute strategy call.</p>
+            <a href="https://calendly.com/robs46859" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book a Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
+            <p style="margin-top: 15px;">Intelligent automation for aesthetic excellence.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="features.html">Features</a></li>
+              <li><a href="solutions.html">Solutions</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Solutions</h4>
+            <ul class="footer-links">
+              <li><a href="features.html#workflows">Workflow Automation</a></li>
+              <li><a href="features.html#patient-journeys">Patient Engagement</a></li>
+              <li><a href="features.html#compliance">Compliance Systems</a></li>
+              <li><a href="features.html#revenue">Revenue Optimization</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Captivate. All rights reserved.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions — Captivate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+    .solution-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: var(--accent-primary);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .check-list {
+      list-style: none;
+      margin: 30px 0;
+      flex-grow: 1;
+    }
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+    .check-list svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent-primary);
+      stroke-width: 2;
+      fill: none;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-divider);
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-divider);
+    }
+    .comparison-table th {
+      background-color: var(--bg-alt);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+    @media (max-width: 768px) {
+      .solutions-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Navigation -->
+    <nav>
+      <div class="container nav-container">
+        <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
+        <div class="nav-links">
+          <a href="features.html">Features</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="#" class="disabled" title="Coming Soon">Sign In</a>
+        </div>
+        <div class="nav-cta">
+          <a href="contact.html" class="btn btn-primary">Get Started</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="mobile-menu">
+        <a href="features.html">Features</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="#" class="disabled" title="Coming Soon">Sign In</a>
+        <a href="contact.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section>
+      <div class="container" style="text-align: center;">
+        <h1 class="fade-in">Solutions for Every Stage of Growth</h1>
+        <p class="fade-in">Whether you need one quick win or a complete operational overhaul, we have a path for you.</p>
+      </div>
+    </section>
+
+    <!-- Tiers -->
+    <section class="alt-bg">
+      <div class="container">
+        <div class="solutions-grid">
+          <!-- Card 1 -->
+          <div class="card solution-card fade-in">
+            <h3>Quick Win</h3>
+            <p class="italic-serif" style="color: var(--accent-primary); margin-bottom: 15px;">One Core System. Immediate Impact.</p>
+            <p>Choose the single automation system that will make the biggest difference in your practice right now. Deployed in a focused 14-day sprint with 30 days of post-launch support.</p>
+            <ul class="check-list">
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> One core automation system</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 14-day deployment sprint</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 30-day post-launch support</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated onboarding session</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="text-align: center;">Get Started</a>
+          </div>
+          <!-- Card 2 -->
+          <div class="card solution-card fade-in">
+            <div class="badge">Most Popular</div>
+            <h3>Full MedSpa OS</h3>
+            <p class="italic-serif" style="color: var(--accent-primary); margin-bottom: 15px;">The Complete Operational Transformation.</p>
+            <p>All three automation systems working together as a unified operating platform. Includes AI receptionist, unified inbox, performance dashboards, and 90 days of hands-on support.</p>
+            <ul class="check-list">
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> All three automation systems</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> AI receptionist and unified inbox</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Performance dashboards and reporting</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 90-day hands-on support</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Quarterly performance audit</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="text-align: center;">Get Started</a>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <h2 style="text-align: center; margin-bottom: 40px;">Compare Solutions</h2>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Quick Win</th>
+                <th>Full MedSpa OS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Core Automation System</td>
+                <td>1 system</td>
+                <td>All 3 systems</td>
+              </tr>
+              <tr>
+                <td>AI Receptionist</td>
+                <td>—</td>
+                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
+              </tr>
+              <tr>
+                <td>Unified Inbox</td>
+                <td>—</td>
+                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
+              </tr>
+              <tr>
+                <td>Performance Dashboards</td>
+                <td>—</td>
+                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
+              </tr>
+              <tr>
+                <td>Deployment Timeline</td>
+                <td>14 days</td>
+                <td>14 days</td>
+              </tr>
+              <tr>
+                <td>Post-Launch Support</td>
+                <td>30 days</td>
+                <td>90 days</td>
+              </tr>
+              <tr>
+                <td>Quarterly Audit</td>
+                <td>—</td>
+                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
+              </tr>
+              <tr>
+                <td>Dedicated Onboarding</td>
+                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
+                <td style="color: var(--accent-primary); font-weight: bold;">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 80px;" class="fade-in">
+          <h3 style="margin-bottom: 20px;">Not sure which is right for you? Let's talk.</h3>
+          <a href="contact.html" class="btn btn-primary">Book a Free Consultation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
+            <p style="margin-top: 15px;">Intelligent automation for aesthetic excellence.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="features.html">Features</a></li>
+              <li><a href="solutions.html">Solutions</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Solutions</h4>
+            <ul class="footer-links">
+              <li><a href="features.html#workflows">Workflow Automation</a></li>
+              <li><a href="features.html#patient-journeys">Patient Engagement</a></li>
+              <li><a href="features.html#compliance">Compliance Systems</a></li>
+              <li><a href="features.html#revenue">Revenue Optimization</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Captivate. All rights reserved.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
