@@ -127,6 +127,7 @@ nav.scrolled {
   font-size: 2.5rem;
   color: var(--accent-primary);
   line-height: 1;
+  opacity: 0.6;
 }
 
 .nav-links {
