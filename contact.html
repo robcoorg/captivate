@@ -3,25 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us — Captivate</title>
+  <title>Contact — Captivate</title>
+  <meta name="description" content="Book a strategy call with Captivate. Tell us about your MedSpa practice and we'll show you what's possible.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .contact-form-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .form-divider {
-      height: 1px;
-      background-color: var(--border-divider);
-      margin: 40px 0;
-    }
+    .contact-form-container { max-width: 600px; margin: 0 auto; }
+    .form-divider { height: 1px; background-color: var(--border-divider); margin: 40px 0; }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
+
     <!-- Navigation -->
     <nav>
       <div class="container nav-container">
@@ -34,7 +29,7 @@
           <a href="#" class="disabled" title="Coming Soon">Sign In</a>
         </div>
         <div class="nav-cta">
-          <a href="contact.html" class="btn btn-primary">Get Started</a>
+          <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
         </div>
         <button class="hamburger" aria-label="Toggle Menu">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -46,15 +41,15 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        <a href="contact.html" class="btn btn-primary">Get Started</a>
+        <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
       </div>
     </nav>
 
     <!-- Hero -->
     <section>
-      <div class="container" style="text-align: center;">
+      <div class="container" style="text-align: center; max-width: 700px;">
         <h1 class="fade-in">Let's Start a Conversation</h1>
-        <p class="fade-in">Tell us about your practice and where you'd like to go. We'll listen first, then show you what's possible together.</p>
+        <p class="fade-in" style="font-size: 1.15rem;">Tell us about your practice and where you'd like to go. No pitch, no pressure — just a real conversation about what's possible.</p>
       </div>
     </section>
 
@@ -63,9 +58,8 @@
       <div class="container">
         <div class="card contact-form-container fade-in">
           <form action="https://formsubmit.co/rob46859@gmail.com" method="POST">
-            <!-- FormSubmit configuration -->
             <input type="hidden" name="_next" value="https://captivate.icu/thankyou.html">
-            <input type="hidden" name="_subject" value="New Captivate Inquiry">
+            <input type="hidden" name="_subject" value="New Captivate Strategy Call Request">
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_captcha" value="true">
 
@@ -92,10 +86,11 @@
             <div class="form-group">
               <label for="interest">Where can we help most?</label>
               <select id="interest" name="interest">
-                <option value="First Step">First Step — One Core System</option>
-                <option value="Full Practice Partnership">Full Practice Partnership — Complete Support</option>
+                <option value="Physician Oversight">Physician Oversight &amp; Compliance</option>
+                <option value="Scheduling">Scheduling &amp; Room Utilization</option>
+                <option value="Lead Conversion">Lead Conversion &amp; Patient Retention</option>
+                <option value="Full Partnership">Full Practice Partnership</option>
                 <option value="Not Sure Yet">Not Sure Yet — Help Me Figure It Out</option>
-                <option value="Other">Other</option>
               </select>
             </div>
 
@@ -110,7 +105,7 @@
           <div class="form-divider"></div>
 
           <div style="text-align: center;">
-            <p style="margin-bottom: 20px;">Prefer to talk? Book a free 20-minute call — no pitch, just a real conversation.</p>
+            <p style="margin-bottom: 20px;">Prefer to talk? Book a free 20-minute strategy call — no pitch, just clarity.</p>
             <a href="https://calendly.com/robs46859" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book a Call</a>
           </div>
         </div>
@@ -123,7 +118,7 @@
         <div class="footer-grid">
           <div class="footer-col">
             <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
-            <p style="margin-top: 15px;">Your partner in aesthetic excellence.</p>
+            <p style="margin-top: 15px;">The operating system for modern MedSpas.</p>
           </div>
           <div class="footer-col">
             <h4>Quick Links</h4>
@@ -136,17 +131,17 @@
             </ul>
           </div>
           <div class="footer-col">
-            <h4>What We Do</h4>
+            <h4>Capabilities</h4>
             <ul class="footer-links">
-              <li><a href="features.html#workflows">Practice Workflows</a></li>
-              <li><a href="features.html#patient-journeys">Patient Care</a></li>
-              <li><a href="features.html#compliance">Compliance Support</a></li>
-              <li><a href="features.html#revenue">Growth Strategy</a></li>
+              <li><a href="features.html#compliance">Physician Oversight</a></li>
+              <li><a href="features.html#workflows">Smart Scheduling</a></li>
+              <li><a href="features.html#patient-journeys">Lead Conversion</a></li>
+              <li><a href="features.html#revenue">Growth Analytics</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>Connect</h4>
-            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
           </div>
         </div>
         <div class="footer-bottom">
@@ -158,8 +153,8 @@
         </div>
       </div>
     </footer>
-  </div>
 
+  </div>
   <script src="js/main.js"></script>
 </body>
 </html>
