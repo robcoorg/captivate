@@ -89,12 +89,14 @@ nav {
 }
 
 .logo {
-  font-family: var(--font-serif);
-  font-size: 1.75rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--text-primary);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
@@ -334,13 +336,14 @@ footer { background: var(--text-primary); padding: 60px 0 0; }
 }
 
 .footer-logo {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--accent-primary);
   display: inline-block;
   margin-bottom: 12px;
+}
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  filter: brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(400%) hue-rotate(90deg);
 }
 
 .footer-tagline { color: rgba(255,255,255,0.55); font-size: 0.875rem; line-height: 1.6; margin: 0; }
