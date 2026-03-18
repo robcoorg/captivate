@@ -3,193 +3,426 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Captivate — The MedSpa Operating System</title>
-  <meta name="description" content="Captivate removes the operational ceiling holding your MedSpa back. Scale revenue, expand locations, and protect margins without adding complexity.">
+  <title>Captivate — The Art of Clinical Serenity</title>
+  <meta name="description" content="Captivate is the all-in-one med spa operating system. HIPAA-compliant EMR, smart scheduling, omni-channel inbox, and AI patient re-engagement — all at one flat rate.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Homepage hero: centered text over full-bleed image ── */
+    .hero-full { min-height: 72vh; align-items: center; justify-content: center; text-align: center; }
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(250,248,244,.55) 0%, rgba(250,248,244,.65) 60%, rgba(250,248,244,.75) 100%);
+    }
+    .hero-content { max-width: 720px; margin: 0 auto; padding: 72px 24px; }
+    .hero-content h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); margin-bottom: 18px; color: var(--text-dark); }
+    .hero-content p { font-size: 1.1rem; max-width: 540px; margin: 0 auto 32px; color: var(--text-mid); }
+    .hero-actions { justify-content: center; }
+
+    /* ── Feature strip below hero ── */
+    .feature-strip { background: var(--white); padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .feature-strip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 48px 56px; }
+    .strip-card { display: flex; flex-direction: column; }
+    .strip-icon { width: 60px; height: 60px; margin-bottom: 18px; color: var(--taupe); }
+    .strip-icon svg { width: 100%; height: 100%; }
+    .strip-card h3 { font-family: var(--font-sans); font-size: 1.12rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .strip-card p { font-size: .93rem; color: var(--text-mid); margin-bottom: 14px; flex: 1; }
+    .strip-link { font-size: .86rem; font-weight: 600; color: var(--text-muted); letter-spacing: .02em; transition: color .2s; }
+    .strip-link:hover { color: var(--green-dark); }
+
+    @media (max-width: 768px) {
+      .feature-strip-grid { gap: 36px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="page-wrapper">
+<div class="page-wrapper">
 
-    <!-- Navigation -->
-    <nav>
-      <div class="container nav-container">
-        <a href="index.html" class="logo" aria-label="Cativate Home"><img src="logo.png" alt="Captivate" class="logo-img"></a>
-        <div class="nav-links">
-          <a href="features.html">Features</a>
-          <a href="solutions.html">Solutions</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        </div>
-        <div class="nav-cta">
-          <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-        </div>
-        <button class="hamburger" aria-label="Toggle Menu">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <div class="mobile-menu">
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <a href="index.html" class="logo" aria-label="Captivate Home">
+        <img src="logo.png" alt="Captivate logo" class="logo-img">
+        <span class="logo-wordmark">Captivate</span>
+      </a>
+      <div class="nav-links">
         <a href="features.html">Features</a>
         <a href="solutions.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
       </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-full">
-      <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1600&q=80" alt="Modern medical spa interior" class="hero-bg">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content fade-in">
-        <h1 class="italic-serif">Your MedSpa Should Scale Without the Strain</h1>
-        <p>Captivate replaces the operational chaos holding your practice back — so you can grow revenue, add locations, and protect your margins without adding headcount.</p>
-        <a href="contact.html" class="btn btn-primary btn-lg">Book a Strategy Call</a>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get Started</a>
       </div>
-    </section>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">Features</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </nav>
 
-    <!-- Trust Bar -->
-    <section class="trust-bar">
-      <div class="container trust-items">
-        <span>Built for Multi-Location MedSpas</span>
-        <span>•</span>
-        <span>Physician Oversight Compliance Built In</span>
-        <span>•</span>
-        <span>Integrates With Your Existing Systems</span>
+  <!-- Hero -->
+  <section class="hero-full">
+    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1800&q=85" alt="Serene modern med spa treatment room" class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="italic-serif">The Art of Clinical Serenity</h1>
+        <p>Elevate your aesthetic practice with our peaceful, sophisticated, and automated platform.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Problem Section -->
-    <section class="section section-warm">
-      <div class="container content-narrow fade-in">
-        <h2 class="section-title italic-serif">Growth Shouldn’t Create More Complexity</h2>
-        <p class="section-subtitle">You’ve invested in skilled practitioners, premium devices, and a brand clients love. But behind the scenes, the same problems keep stacking up: schedules with revenue-killing gaps, leads that go cold because follow-up is inconsistent, compliance demands that chain your medical director to day-to-day operations, and equipment that sits idle or fails without warning.</p>
-        <p class="section-subtitle">The result is a business that depends entirely on specific people to function — and a ceiling on how far you can grow.</p>
-      </div>
-    </section>
+  <!-- Feature Strip -->
+  <div class="feature-strip">
+    <div class="container">
+      <div class="feature-strip-grid">
 
-    <!-- Solution Section -->
-    <section class="section">
-      <div class="container fade-in">
-        <h2 class="section-title italic-serif">An Operating System, Not Another Tool</h2>
-        <p class="section-subtitle">Captivate isn’t a single feature bolted onto your practice. It’s a connected platform that brings your scheduling, compliance, client engagement, and business intelligence into one seamless system — designed specifically for the way MedSpas actually operate.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">⚖️</div>
-            <h3>Physician Oversight</h3>
-            <p>Structured delegation protocols, digital treatment sign-off, and compliance documentation that free your medical director from being bottlenecked into every decision.</p>
+        <div class="strip-card fade-in">
+          <div class="strip-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="8"/>
+              <path d="M32 8v6M32 50v6M8 32h6M50 32h6M14.9 14.9l4.2 4.2M44.9 44.9l4.2 4.2M14.9 49.1l4.2-4.2M44.9 19.1l4.2-4.2"/>
+              <circle cx="20" cy="44" r="6"/>
+              <path d="M20 38v-4M20 50v4M14 44h-4M26 44h4"/>
+            </svg>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">📅</div>
-            <h3>Intelligent Scheduling</h3>
-            <p>Room and provider optimization that fills revenue gaps, balances practitioner workloads, and eliminates the scheduling conflicts that cost you thousands each month.</p>
+          <h3>Seamless Automations</h3>
+          <p>Automate scheduling, patient reminders, and workflows effortlessly — so your team spends less time on admin and more time on care.</p>
+          <a href="features.html" class="strip-link">Learn More</a>
+        </div>
+
+        <div class="strip-card fade-in">
+          <div class="strip-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 20c0-5.5-4.5-10-10-10S12 14.5 12 20c0 10 20 26 20 26s20-16 20-26c0-5.5-4.5-10-10-10S32 14.5 32 20z"/>
+              <circle cx="20" cy="46" r="4"/>
+              <path d="M24 46h16"/>
+              <circle cx="44" cy="46" r="4"/>
+            </svg>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3>Client Journey Management</h3>
-            <p>Automated follow-up sequences, consultation-to-booking workflows, and retention systems that keep your pipeline full without depending on front desk heroics.</p>
+          <h3>Patient-First Journeys</h3>
+          <p>Cultivate trust and loyalty through personalized, attentive patient experiences that keep clients coming back — without any extra effort from your team.</p>
+          <a href="solutions.html" class="strip-link">Learn More</a>
+        </div>
+
+        <div class="strip-card fade-in">
+          <div class="strip-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 8L12 16v16c0 13.3 8.7 25.7 20 29 11.3-3.3 20-15.7 20-29V16L32 8z"/>
+              <polyline points="24 32 30 38 42 26"/>
+            </svg>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Performance Analytics</h3>
-            <p>Real-time visibility into revenue per room, provider utilization, lead conversion, and equipment ROI — the metrics that actually drive MedSpa profitability.</p>
+          <h3>Medical-First Compliance</h3>
+          <p>Good Faith Exam tracking, provider supervision logs, and HIPAA-secure documentation built in as core features — so you stay audit-ready without the overhead.</p>
+          <a href="features.html#emr" class="strip-link">Learn More</a>
+        </div>
+
+        <div class="strip-card fade-in">
+          <div class="strip-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="16" width="48" height="36" rx="4"/>
+              <line x1="8" y1="28" x2="56" y2="28"/>
+              <line x1="20" y1="8" x2="20" y2="20"/>
+              <line x1="44" y1="8" x2="44" y2="20"/>
+              <line x1="20" y1="40" x2="44" y2="40"/>
+            </svg>
+          </div>
+          <h3>Everything Included</h3>
+          <p>HIPAA forms, 2-way texting, resource scheduling, and AI re-engagement — all bundled into one flat monthly rate with unlimited staff seats and no hidden fees.</p>
+          <a href="pricing.html" class="strip-link">See Pricing</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-bar-inner">
+        <div class="trust-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          HIPAA Compliant
+        </div>
+        <div class="trust-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Flat-Rate Pricing
+        </div>
+        <div class="trust-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Unlimited Staff Seats
+        </div>
+        <div class="trust-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          PCI-Compliant POS
+        </div>
+        <div class="trust-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          White-Glove Migration
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <section class="alt-bg">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="eyebrow">Real Results</span>
+        <h2>Built to Move the Needle for Your Practice</h2>
+        <p>Captivate is a revenue recovery tool as much as it is software. Our customers see measurable results within the first 90 days — from fewer no-shows to thousands in recovered recurring revenue.</p>
+      </div>
+      <div class="stats-row fade-in">
+        <div class="stat-item">
+          <div class="stat-number" data-target="8" data-prefix="$" data-suffix="k+">$8k+</div>
+          <div class="stat-label">Average monthly revenue recovered through automated patient lifecycle marketing</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="40" data-suffix="%">40%</div>
+          <div class="stat-label">Reduction in no-shows with smart, automated appointment reminders</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="3" data-suffix="–5 days">3–5 days</div>
+          <div class="stat-label">Average time to go live — including full patient record migration, at no charge</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="0">$0</div>
+          <div class="stat-label">Setup fees, migration costs, or cancellation penalties — ever</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features -->
+  <section>
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="eyebrow">Core Platform</span>
+        <h2>Everything Your Practice Needs, Bundled Together</h2>
+        <p>One platform. One price. Every tool your med spa needs to operate, grow, and stay compliant — included from day one, with no add-ons required.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>HIPAA-Compliant EMR</h3>
+          <p>Integrated photo management with before/after galleries, injection-site markup, and digital SOAP notes — all synced to the client profile and accessible at point of care.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Smart Resource Scheduling</h3>
+          <p>Book providers, rooms, and devices simultaneously — preventing double-booking and idle capacity. Automated reminders keep your schedule full and your patients informed.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Omni-Channel Inbox</h3>
+          <p>2-way SMS, VoIP calls, and web chat unified in one inbox — so your team never misses a patient message, regardless of how they reach out.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3>AI Patient Re-Engagement</h3>
+          <p>An intelligent agent that identifies patients who haven't returned and reaches out with treatment-specific suggestions based on their history — not a generic mass email.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Medical-First Compliance</h3>
+          <p>Good Faith Exam tracking and provider supervision logs built in as core settings — keeping your practice audit-ready without adding complexity or headcount.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Integrated POS & Memberships</h3>
+          <p>PCI-compliant payments with membership support, package tracking, and a self-service client portal — so patients can manage their own accounts without calling the front desk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split: Patient Journeys -->
+  <section class="alt-bg">
+    <div class="container">
+      <div class="split">
+        <div class="split-text fade-in">
+          <span class="eyebrow">Patient-First Journeys</span>
+          <h2>Cultivate Trust. Build Loyalty. Grow Quietly.</h2>
+          <p>The best med spas don't chase patients — they create experiences so seamless that clients return on their own. Captivate automates the touchpoints that build that loyalty, from first booking to long-term retention.</p>
+          <div class="icon-list">
+            <div class="icon-list-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Personalized intake forms</strong><p>Digitized, HIPAA-secure, and synced to the client profile before they walk in.</p></div>
+            </div>
+            <div class="icon-list-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Self-service membership portal</strong><p>Clients upgrade, pause, or swap benefits from their phone — no calls, no friction.</p></div>
+            </div>
+            <div class="icon-list-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>AI-driven re-engagement</strong><p>Treatment-specific outreach based on each patient's history — timely, relevant, and personal.</p></div>
+            </div>
+          </div>
+          <a href="solutions.html" class="btn btn-primary" style="margin-top:20px;">See Patient Solutions</a>
+        </div>
+        <div class="split-img fade-in">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" alt="Aesthetic treatment consultation">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split: Automations -->
+  <section>
+    <div class="container">
+      <div class="split reverse">
+        <div class="split-text fade-in">
+          <span class="eyebrow">Seamless Automations</span>
+          <h2>Give Your Team Back the Time They Deserve</h2>
+          <p>Med spa owners spend a significant portion of their week on tasks that a well-designed platform should handle automatically. Captivate automates scheduling, reminders, compliance logs, and follow-ups — so your team focuses on delivering exceptional care, not managing software.</p>
+          <div class="icon-list">
+            <div class="icon-list-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Resource-aware scheduling</strong><p>Rooms and devices booked simultaneously — zero double-booking, zero idle capacity.</p></div>
+            </div>
+            <div class="icon-list-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Compliance on autopilot</strong><p>GFE tracking and supervision logs maintained automatically — stay audit-ready without extra effort.</p></div>
+            </div>
+            <div class="icon-list-item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Lifecycle marketing</strong><p>Recover thousands in missed repeat visits each month with intelligent, timed patient outreach.</p></div>
+            </div>
+          </div>
+          <a href="features.html" class="btn btn-primary" style="margin-top:20px;">Explore All Features</a>
+        </div>
+        <div class="split-img fade-in">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" alt="Modern clinic workflow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="alt-bg">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="eyebrow">From Our Clients</span>
+        <h2>Practices That Made the Switch</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-text">"Switching to Captivate was one of the best decisions we made for the practice. Everything we needed was already included — no surprises on the bill, no add-ons to figure out. The ROI was immediate."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name">Sarah M.</div>
+              <div class="author-title">Owner, Luminary Aesthetics — Austin, TX</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-text">"The GFE tracking and compliance tools alone made the switch worth it. Everything is automated, audit-ready, and takes zero effort from my team. I finally feel confident in our documentation."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">D</div>
+            <div>
+              <div class="author-name">Dr. Diana K.</div>
+              <div class="author-title">Medical Director, Revive MedSpa — Denver, CO</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-text">"The migration team moved three years of patient records over a weekend. We were live Monday morning without missing a single appointment. I couldn't believe how smooth it was."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">J</div>
+            <div>
+              <div class="author-name">Jessica T.</div>
+              <div class="author-title">Practice Manager, Serenity Skin Studio — Nashville, TN</div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Transformation Section -->
-    <section class="section section-warm">
-      <div class="container content-narrow fade-in">
-        <h2 class="section-title italic-serif">From Reactive to Resilient</h2>
-        <p class="section-subtitle">Most MedSpas operate reactively — putting out fires, covering gaps, manually tracking everything. Captivate shifts your operation to a proactive model where systems handle the complexity and your team focuses on what they do best: delivering exceptional clinical outcomes and client experiences.</p>
-        <div class="stats-row">
-          <div class="stat-item">
-            <div class="stat-number">30%</div>
-            <div class="stat-label">Reduction in scheduling gaps</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">3x</div>
-            <div class="stat-label">Faster lead follow-up</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">60%</div>
-            <div class="stat-label">Less time on compliance admin</div>
-          </div>
+  <!-- CTA Band -->
+  <section class="cta-band">
+    <div class="container">
+      <h2 class="fade-in">Ready to Elevate Your Practice?</h2>
+      <p class="fade-in">One flat rate. Unlimited staff. Everything included. Book a strategy call and we'll show you exactly how Captivate fits your practice — no obligation, no pressure.</p>
+      <div class="cta-actions fade-in">
+        <a href="contact.html" class="btn btn-ghost btn-lg">Book a Strategy Call</a>
+        <a href="pricing.html" class="btn btn-primary btn-lg">View Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-wordmark">Captivate</span>
+          <p>The all-in-one operating system for modern med spas. HIPAA-compliant, medically-first, and priced to grow with you.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Implementation Section -->
-    <section class="section">
-      <div class="container content-narrow fade-in">
-        <h2 class="section-title italic-serif">A Phased Path, Not a Disruption</h2>
-        <p class="section-subtitle">We don’t rip and replace your current systems. Captivate integrates alongside what you already use, starting with the operational bottleneck that’s costing you the most — then expanding as your team gains confidence and your results compound.</p>
-        <div class="phases-list">
-          <div class="phase-item">
-            <h3>Phase 1: Foundation</h3>
-            <p>Core scheduling optimization and compliance workflows. Immediate relief for your highest-friction operational pain points.</p>
-          </div>
-          <div class="phase-item">
-            <h3>Phase 2: Operational Relief</h3>
-            <p>Client journey automation, lead management, and provider performance dashboards. Your team spends less time on admin and more time on outcomes.</p>
-          </div>
-          <div class="phase-item">
-            <h3>Phase 3: Performance Expansion</h3>
-            <p>Multi-location intelligence, predictive analytics, and full business optimization. The platform scales as you do.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section cta-section">
-      <div class="container content-narrow fade-in" style="text-align: center;">
-        <h2 class="italic-serif">Ready to Remove the Ceiling?</h2>
-        <p>Book a strategy call and we’ll map your current operational bottlenecks to a phased implementation plan — no obligation, no generic demo.</p>
-        <a href="contact.html" class="btn btn-primary btn-lg">Book a Strategy Call</a>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container footer-grid">
         <div class="footer-col">
-          <a href="index.html" class="footer-logo"><img src="logo.png" alt="Captivate" class="footer-logo-img"></a>
-          <p class="footer-tagline">The operating system for modern MedSpas.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Capabilities</h4>
-          <ul>
-            <li><a href="features.html#compliance">Physician Oversight</a></li>
-            <li><a href="features.html#workflows">Smart Scheduling</a></li>
-            <li><a href="features.html#patient-journeys">Lead Conversion</a></li>
-            <li><a href="features.html#revenue">Growth Analytics</a></li>
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="features.html">Features</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Connect</h4>
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get Started</h4>
+          <p style="font-size:.86rem;margin-bottom:14px;color:rgba(255,255,255,.55);">No contracts. No setup fees. Cancel anytime.</p>
           <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Captivate. All rights reserved.</p>
-        <div style="display: flex; gap: 20px;">
+        <div class="footer-legal">
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms of Service</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-  </div>
-  <script src="js/main.js"></script>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>

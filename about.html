@@ -4,156 +4,156 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Captivate</title>
-  <meta name="description" content="Captivate exists for MedSpa owners who know the old way of operating is no longer sustainable. A strategic partner, not a software vendor.">
+  <meta name="description" content="Captivate was built by practitioners and operators who lived the operational challenges of running a modern med spa. Learn about our mission and values.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .values-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; margin-top:48px; }
+    .value-card { padding:32px 28px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius-md); }
+    .value-number { font-family:var(--font-serif); font-size:2.4rem; font-weight:700; color:var(--green-pale); line-height:1; margin-bottom:12px; }
+    .value-card h3 { font-size:1.1rem; margin-bottom:8px; }
+    .value-card p { font-size:.92rem; }
+    .team-intro { max-width:700px; margin:0 auto; text-align:center; }
+    .mission-quote {
+      border-left:4px solid var(--green-mid); padding:24px 32px;
+      background:var(--green-pale); border-radius:0 var(--radius-md) var(--radius-md) 0;
+      font-family:var(--font-serif); font-size:1.3rem; font-style:italic;
+      color:var(--green-dark); margin:48px 0; line-height:1.6;
+    }
+  </style>
 </head>
 <body>
-  <div class="page-wrapper">
-
-    <!-- Navigation -->
-    <nav>
-      <div class="container nav-container">
-        <a href="index.html" class="logo" aria-label="Captivate Home"><img src="logo.png" alt="Captivate" class="logo-img"></a>
-        <div class="nav-links">
-          <a href="features.html">Features</a>
-          <a href="solutions.html">Solutions</a>
-          <a href="about.html" class="active">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        </div>
-        <div class="nav-cta">
-          <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-        </div>
-        <button class="hamburger" aria-label="Toggle Menu">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+<div class="page-wrapper">
+  <nav>
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><img src="logo.png" alt="Captivate logo" class="logo-img"><span class="logo-wordmark">Captivate</span></a>
+      <div class="nav-links">
+        <a href="features.html">Features</a><a href="solutions.html">Solutions</a><a href="pricing.html">Pricing</a><a href="about.html" class="active">About</a><a href="contact.html">Contact</a>
       </div>
-      <div class="mobile-menu">
-        <a href="features.html">Features</a>
-        <a href="solutions.html">Solutions</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-      </div>
-    </nav>
+      <div class="nav-cta"><a href="contact.html" class="btn btn-primary">Get Started</a></div>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">Features</a><a href="solutions.html">Solutions</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </nav>
 
-    <!-- Hero -->
-    <section>
-      <div class="container" style="text-align: center; max-width: 800px;">
-        <h1 class="fade-in">A Strategic Partner, Not a Software Vendor</h1>
-        <p class="fade-in" style="font-size: 1.15rem;">Captivate exists for MedSpa owners who recognize that the old way of operating is no longer sustainable.</p>
-      </div>
-    </section>
-
-    <!-- Mission -->
-    <section class="alt-bg">
-      <div class="container fade-in" style="max-width: 800px; text-align: center;">
-        <h2 style="margin-bottom: 30px;">Why We Built Captivate</h2>
-        <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px;">The medical aesthetics industry is no longer operating in the world it was built for. What once thrived as a boutique, personality-driven business is now under pressure from every direction — staff shortages, rising compliance demands, inconsistent revenue cycles, and increasing expectations for measurable outcomes.</p>
-        <p style="font-size: 1.15rem; line-height: 1.8;">MedSpa owners are finding themselves trapped in a system where growth creates more complexity, not more freedom. Captivate was built to change that equation.</p>
-      </div>
-    </section>
-
-    <!-- The Problem We Solve -->
-    <section>
-      <div class="container">
-        <div class="grid-2 fade-in">
-          <div>
-            <h2 style="margin-bottom: 30px;">The Ceiling Most Practices Hit</h2>
-            <div style="color: var(--text-secondary);">
-              <p style="margin-bottom: 20px;">Across the industry, the same pattern keeps emerging. Highly trained practitioners are buried in administrative work. Schedules have gaps that quietly erode revenue. Leads come in, but follow-up is inconsistent. Expensive devices sit idle or break unexpectedly.</p>
-              <p style="margin-bottom: 20px;">The result is a business that depends too heavily on specific individuals to function. A ceiling on growth. And constant operational friction.</p>
-              <p>A thoughtful strategic partner doesn't replace the human element of your practice. We organize, structure, and support the business side so your clinicians can focus on what they were trained to do — and your practice can grow without strain.</p>
-            </div>
-          </div>
-          <div class="feature-image">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80" alt="Serene wellness interior with natural light" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Values -->
-    <section class="alt-bg">
-      <div class="container" style="text-align: center;">
-        <h2 style="margin-bottom: 60px;" class="fade-in">What We Stand For</h2>
-        <div class="grid-3">
-          <div class="card fade-in">
-            <div class="icon" style="margin: 0 auto 20px;">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            </div>
-            <h3>Clinical Excellence First</h3>
-            <p>Every system we deploy is built to protect patient safety and support outstanding treatment outcomes. This is never a compromise.</p>
-          </div>
-          <div class="card fade-in">
-            <div class="icon" style="margin: 0 auto 20px;">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            </div>
-            <h3>Partnership Over Transactions</h3>
-            <p>The best practices are built on trust. We treat every engagement as a long-term relationship — your growth is our measure of success.</p>
-          </div>
-          <div class="card fade-in">
-            <div class="icon" style="margin: 0 auto 20px;">
-              <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
-            </div>
-            <h3>Precision Over Guesswork</h3>
-            <p>We replace reactive operations with intelligent systems — so decisions are guided by real-time insight, not memory and manual effort.</p>
-          </div>
-        </div>
-        <div style="margin-top: 80px;" class="fade-in">
-          <h3 style="margin-bottom: 20px;">Ready to see what's possible for your practice?</h3>
-          <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <a href="index.html" class="logo" aria-label="Captivate Home">C</a>
-            <p style="margin-top: 15px;">The operating system for modern MedSpas.</p>
-          </div>
-          <div class="footer-col">
-            <h4>Quick Links</h4>
-            <ul class="footer-links">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="features.html">Features</a></li>
-              <li><a href="solutions.html">Solutions</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Capabilities</h4>
-            <ul class="footer-links">
-              <li><a href="features.html#compliance">Physician Oversight</a></li>
-              <li><a href="features.html#workflows">Smart Scheduling</a></li>
-              <li><a href="features.html#patient-journeys">Lead Conversion</a></li>
-              <li><a href="features.html#revenue">Growth Analytics</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Connect</h4>
-            <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Captivate. All rights reserved.</p>
-          <div style="display: flex; gap: 20px;">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Our Story</span>
+      <h1>Built by Practitioners, for Practitioners</h1>
+      <p>Captivate was born from a simple frustration: the tools available to med spa owners were either too expensive, too complex, or built for a different kind of business entirely.</p>
+    </div>
   </div>
-  <script src="js/main.js"></script>
+
+  <!-- Mission -->
+  <section>
+    <div class="container">
+      <div class="split">
+        <div class="split-text fade-in">
+          <span class="eyebrow">Our Mission</span>
+          <h2>Clinical Serenity Shouldn't Stop at the Treatment Room Door</h2>
+          <p>The best aesthetic practices create an experience of calm, trust, and precision for their patients. We believe the operations behind that experience should feel the same way — seamless, intelligent, and quietly powerful.</p>
+          <p>Captivate was built to remove the operational noise that keeps practice owners up at night: the scheduling conflicts, the compliance paperwork, the patients who slip through the cracks, the software bills that keep climbing. We replace all of that with one platform that simply works.</p>
+          <div class="mission-quote">"The best technology disappears into the background and lets the human experience come forward."</div>
+        </div>
+        <div class="split-img fade-in">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Serene med spa environment">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="alt-bg">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="eyebrow">What We Stand For</span>
+        <h2>The Principles Behind Every Decision We Make</h2>
+        <p>These aren't marketing words. They're the filters we use when deciding what to build, how to price it, and how to support the practices that trust us.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <div class="value-number">01</div>
+          <h3>Medical-First, Always</h3>
+          <p>Every feature we build starts with the clinical reality of running a med spa — not a day spa, not a salon. Compliance, documentation, and oversight are core, not afterthoughts.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-number">02</div>
+          <h3>Transparent Pricing</h3>
+          <p>The price you see is the price you pay. We don't believe in base rates that balloon with add-ons. One flat rate, everything included, no surprises on your bill.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-number">03</div>
+          <h3>Patient-First Design</h3>
+          <p>Every workflow we design is evaluated from the patient's perspective first. If it creates friction for the people your practice serves, we don't ship it.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-number">04</div>
+          <h3>Radical Simplicity</h3>
+          <p>Powerful software doesn't have to be complicated. We obsess over making complex operations feel effortless — for owners, staff, and patients alike.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-number">05</div>
+          <h3>Partnership Over Transaction</h3>
+          <p>When you join Captivate, you get a migration team, an onboarding specialist, and ongoing support — not a knowledge base and a ticket queue. We succeed when you do.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-number">06</div>
+          <h3>Built to Last</h3>
+          <p>We're building a long-term platform for a growing industry. That means making decisions that are right for our customers over years — not quarters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why We Exist -->
+  <section>
+    <div class="container">
+      <div class="split reverse">
+        <div class="split-text fade-in">
+          <span class="eyebrow">Why We Exist</span>
+          <h2>The Med Spa Industry Deserves Better Software</h2>
+          <p>The aesthetic medicine industry is growing rapidly — and the operational demands on practice owners are growing with it. More patients, more compliance requirements, more staff to coordinate, more revenue to protect.</p>
+          <p>Yet the software available to most practices hasn't kept pace. Tools are fragmented, pricing is opaque, and the features that matter most — HIPAA compliance, GFE tracking, AI-driven retention — are either missing or locked behind expensive add-ons.</p>
+          <p>Captivate exists to change that. We built the platform we wished existed: medically rigorous, operationally complete, and priced so that any practice — from a solo injector to a multi-location group — can access the same quality of tools.</p>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:20px;">Book a Strategy Call</a>
+        </div>
+        <div class="split-img fade-in">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" alt="Modern practice operations">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2 class="fade-in">Ready to Experience the Difference?</h2>
+      <p class="fade-in">Book a strategy call and see firsthand what a platform built specifically for med spas feels like — no obligation, no pressure.</p>
+      <div class="cta-actions fade-in">
+        <a href="contact.html" class="btn btn-ghost btn-lg">Book a Strategy Call</a>
+        <a href="features.html" class="btn btn-primary btn-lg">Explore Features</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><span class="logo-wordmark">Captivate</span><p>The all-in-one operating system for modern med spas. HIPAA-compliant, medically-first, and priced to grow with you.</p></div>
+        <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="features.html">Features</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+        <div class="footer-col"><h4>Get Started</h4><p style="font-size:.86rem;margin-bottom:14px;color:rgba(255,255,255,.55);">No contracts. No setup fees.</p><a href="contact.html" class="btn btn-primary">Book a Strategy Call</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Captivate. All rights reserved.</p><div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div></div>
+    </div>
+  </footer>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>

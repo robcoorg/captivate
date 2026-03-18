@@ -6,98 +6,57 @@
   <title>Thank You — Captivate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .thankyou-section { min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 24px; }
+    .thankyou-icon { width:72px; height:72px; background:var(--green-pale); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 28px; color:var(--green-dark); }
+    .thankyou-section h1 { font-size:clamp(2rem,4vw,3rem); margin-bottom:16px; }
+    .thankyou-section p { color:var(--text-mid); max-width:480px; margin:0 auto 32px; font-size:1.05rem; }
+  </style>
 </head>
 <body>
-  <div class="page-wrapper">
-
-    <!-- Navigation -->
-    <nav>
-      <div class="container nav-container">
-        <a href="index.html" class="logo" aria-label="Captivate Home"><img src="logo.png" alt="Captivate" class="logo-img"></a>
-        <div class="nav-links">
-          <a href="features.html">Features</a>
-          <a href="solutions.html">Solutions</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        </div>
-        <div class="nav-cta">
-          <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-        </div>
-        <button class="hamburger" aria-label="Toggle Menu">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+<div class="page-wrapper">
+  <nav>
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><img src="logo.png" alt="Captivate logo" class="logo-img"><span class="logo-wordmark">Captivate</span></a>
+      <div class="nav-links">
+        <a href="features.html">Features</a><a href="solutions.html">Solutions</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
       </div>
-      <div class="mobile-menu">
-        <a href="features.html">Features</a>
-        <a href="solutions.html">Solutions</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="#" class="disabled" title="Coming Soon">Sign In</a>
-        <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-      </div>
-    </nav>
+      <div class="nav-cta"><a href="contact.html" class="btn btn-primary">Get Started</a></div>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu">
+      <a href="features.html">Features</a><a href="solutions.html">Solutions</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </nav>
 
-    <!-- Thank You Content -->
-    <section>
-      <div class="container" style="text-align: center;">
-        <div class="card fade-in" style="max-width: 520px; margin: 0 auto; padding: 60px 40px;">
-          <div class="icon" style="margin: 0 auto 30px; width: 60px; height: 60px;">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          </div>
-          <h1 style="margin-bottom: 20px;">Thank You</h1>
-          <p style="margin-bottom: 20px; font-size: 1.1rem;">We've received your message and someone from our team will be in touch within 24 hours.</p>
-          <p style="margin-bottom: 40px;">In the meantime, feel free to explore how Captivate is helping MedSpa owners remove the operational ceiling on their practice.</p>
-          <a href="index.html" class="btn btn-primary">Back to Home</a>
-        </div>
+  <div class="thankyou-section">
+    <div>
+      <div class="thankyou-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <a href="index.html" class="logo" aria-label="Captivate Home"><img src="logo.png" alt="Captivate" class="logo-img"></a>
-            <p style="margin-top: 15px;">The operating system for modern MedSpas.</p>
-          </div>
-          <div class="footer-col">
-            <h4>Quick Links</h4>
-            <ul class="footer-links">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="features.html">Features</a></li>
-              <li><a href="solutions.html">Solutions</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Capabilities</h4>
-            <ul class="footer-links">
-              <li><a href="features.html#compliance">Physician Oversight</a></li>
-              <li><a href="features.html#workflows">Smart Scheduling</a></li>
-              <li><a href="features.html#patient-journeys">Lead Conversion</a></li>
-              <li><a href="features.html#revenue">Growth Analytics</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Connect</h4>
-            <a href="contact.html" class="btn btn-primary">Book a Strategy Call</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Captivate. All rights reserved.</p>
-          <div style="display: flex; gap: 20px;">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+      <h1>You're All Set</h1>
+      <p>Thank you for reaching out. A member of our team will be in touch within one business day to schedule your strategy call.</p>
+      <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+    </div>
   </div>
-  <script src="js/main.js"></script>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><span class="logo-wordmark">Captivate</span><p>The all-in-one operating system for modern med spas.</p></div>
+        <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="features.html">Features</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+        <div class="footer-col"><h4>Get Started</h4><a href="contact.html" class="btn btn-primary">Book a Strategy Call</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Captivate. All rights reserved.</p><div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div></div>
+    </div>
+  </footer>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>
