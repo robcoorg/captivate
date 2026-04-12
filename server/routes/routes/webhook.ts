@@ -2,7 +2,7 @@ import { Router } from 'express';
 import type { Request, Response } from 'express';
 import Stripe from 'stripe';
 import { query } from '../../db.js';
-import { TIER_PRICE, stripe } from './billing.js';
+import { TIER_PRICE, getStripe } from './billing.js';
 
 // Reverse map: price ID → tier name
 const PRICE_TO_TIER: Record<string, string> = {};
@@ -23,7 +23,7 @@ router.post('/', async (req: Request, res: Response) => {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(req.body as Buffer, sig, secret);
+    event = getStripe().webhooks.constructEvent(req.body as Buffer, sig, secret);
   } catch (err: any) {
     console.error('[webhook] signature verification failed:', err.message);
     return res.status(400).json({ error: `Webhook signature verification failed: ${err.message}` });
@@ -92,7 +92,7 @@ async function onCheckoutCompleted(session: Stripe.Checkout.Session) {
   const subscriptionId = session.subscription as string;
   if (!subscriptionId) return;
 
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+  const subscription = await getStripe().subscriptions.retrieve(subscriptionId);
   const priceId = subscription.items.data[0]?.price.id;
   const tier = PRICE_TO_TIER[priceId] ?? 'starter';
   const userId = await upsertUser(email, customerId);

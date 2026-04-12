@@ -3,7 +3,15 @@ import type { Request, Response } from 'express';
 import Stripe from 'stripe';
 import { query } from '../../db.js';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+// Lazy-init so importing this module without STRIPE_SECRET_KEY (e.g. in tests) does not crash
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    if (!process.env.STRIPE_SECRET_KEY) throw new Error('STRIPE_SECRET_KEY is not configured');
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  }
+  return _stripe;
+}
 
 // Tier → price ID mapping (subscription tiers)
 const TIER_PRICE: Record<string, string | undefined> = {
@@ -55,7 +63,7 @@ router.post('/checkout', async (req: Request, res: Response) => {
   }
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: 'subscription',
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
@@ -88,7 +96,7 @@ router.post('/credits', async (req: Request, res: Response) => {
   }
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: 'payment',
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
@@ -117,7 +125,7 @@ router.post('/portal', async (req: Request, res: Response) => {
     if (!customerId) {
       return res.status(404).json({ error: { code: 'not_found', message: 'No billing account found for that email' } });
     }
-    const session = await stripe.billingPortal.sessions.create({
+    const session = await getStripe().billingPortal.sessions.create({
       customer: customerId,
       return_url: returnUrl,
     });
@@ -127,5 +135,5 @@ router.post('/portal', async (req: Request, res: Response) => {
   }
 });
 
-export { TIER_PRICE, PACK_PRICE, PACK_CREDITS, stripe };
+export { TIER_PRICE, PACK_PRICE, PACK_CREDITS, getStripe };
 export default router;
