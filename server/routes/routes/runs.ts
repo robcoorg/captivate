@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { query } from '../db.js';
-import { runClaudePlanningLane } from '../claude.js';
+import { query } from '../../db.js';
+import { runClaude } from '../../claude.js';
 
 const router = Router();
 
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
   const { taskId, goal, projectContext } = req.body;
   if (!taskId || !goal) return res.status(400).json({ error: 'taskId and goal required' });
   try {
-    await runClaudePlanningLane(taskId, goal, projectContext || '', res);
+    await runClaude(taskId, goal, projectContext || '', res);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

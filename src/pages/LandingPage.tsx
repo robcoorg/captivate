@@ -62,7 +62,7 @@ export default function LandingPage() {
               <p className="text-sm text-gray-500 mt-1">Faster than manual builds</p>
             </div>
             <div>
-              <p className="text-3xl font-black text-white">< 5 min</p>
+              <p className="text-3xl font-black text-white">{'< 5 min'}</p>
               <p className="text-sm text-gray-500 mt-1">From brief to first draft</p>
             </div>
             <div>

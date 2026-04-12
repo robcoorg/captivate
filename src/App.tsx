@@ -4,11 +4,6 @@ import Layout from './components/Layout'
 import DashboardPage from './pages/DashboardPage'
 import CockpitPage from './pages/CockpitPage'
 
-const isNanoStudio = () => {
-  const host = window.location.hostname
-  return host.includes('captivate.icu') || host.includes('nanostudio') || host === 'localhost'
-}
-
 export default function App() {
   return (
     <BrowserRouter>

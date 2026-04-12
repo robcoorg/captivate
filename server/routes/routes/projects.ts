@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { query } from '../db.js';
+import { query } from '../../db.js';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async (_req, res) => {
   try {
     const result = await query('SELECT * FROM projects ORDER BY created_at DESC');
     res.json(result.rows);

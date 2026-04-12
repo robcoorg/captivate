@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const API = import.meta.env.DEV ? 'http://localhost:3000' : '';
 
@@ -93,7 +93,7 @@ export default function CockpitPage() {
     if (!response.body) { setIsRunning(false); return; }
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
-    while (true) {
+    for (;;) {
       const { done, value } = await reader.read();
       if (done) break;
       const text = decoder.decode(value);
@@ -103,7 +103,9 @@ export default function CockpitPage() {
           const data = JSON.parse(line.slice(6));
           if (data.type === 'chunk') setStreamOutput(p => p + data.content);
           if (data.type === 'done') { setRunMeta(data); fetchPendingRuns(); }
-        } catch {}
+        } catch {
+          /* ignore malformed SSE fragments */
+        }
       }
     }
     setIsRunning(false);

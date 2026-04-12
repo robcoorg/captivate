@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import projectsRouter from './routes/projects.js';
-import tasksRouter from './routes/tasks.js';
-import runsRouter from './routes/runs.js';
-import approvalsRouter from './routes/approvals.js';
+import projectsRouter from './routes/routes/projects.js';
+import tasksRouter from './routes/routes/tasks.js';
+import runsRouter from './routes/routes/runs.js';
+import approvalsRouter from './routes/routes/approvals.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -20,7 +20,7 @@ app.use('/api/runs', runsRouter);
 app.use('/api/approvals', approvalsRouter);
 
 // Health check
-app.get('/api/health', (_, res) => res.json({ status: 'ok', service: 'StelarBIM' }));
+app.get('/api/health', (_, res) => res.json({ status: 'ok', service: 'NanoStudio' }));
 
 // Serve Vite frontend in production
 if (process.env.NODE_ENV === 'production') {
@@ -29,6 +29,14 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (_, res) => res.sendFile(path.join(distPath, 'index.html')));
 }
 
-app.listen(PORT, () => {
-  console.log(`StelarBIM server running on port ${PORT}`);
-});
+export { app };
+
+const isMain =
+  process.argv[1] !== undefined &&
+  fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+
+if (isMain) {
+  app.listen(PORT, () => {
+    console.log(`NanoStudio server running on port ${PORT}`);
+  });
+}
