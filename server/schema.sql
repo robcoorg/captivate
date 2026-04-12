@@ -47,10 +47,14 @@ CREATE TABLE IF NOT EXISTS approvals (
 CREATE TABLE IF NOT EXISTS users (
   id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   email              TEXT UNIQUE NOT NULL,
+  password_hash      TEXT,                    -- bcrypt hash; NULL for OAuth-only accounts
   stripe_customer_id TEXT UNIQUE,
   tier               TEXT NOT NULL DEFAULT 'free', -- free | starter | pro | studio
   created_at         TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Idempotent migration: add password_hash if this table already exists without it
+ALTER TABLE users ADD COLUMN IF NOT EXISTS password_hash TEXT;
 
 CREATE INDEX IF NOT EXISTS users_email_idx              ON users (email);
 CREATE INDEX IF NOT EXISTS users_stripe_customer_id_idx ON users (stripe_customer_id);

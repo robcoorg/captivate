@@ -3,6 +3,12 @@ import type { Request, Response } from 'express';
 import Stripe from 'stripe';
 import { query } from '../../db.js';
 import { TIER_PRICE, getStripe } from './billing.js';
+import {
+  sendSubscriptionStarted,
+  sendPaymentFailed,
+  sendSubscriptionCanceled,
+  sendCreditPackConfirmed,
+} from '../../email.js';
 
 // Reverse map: price ID → tier name
 const PRICE_TO_TIER: Record<string, string> = {};
@@ -85,6 +91,7 @@ async function onCheckoutCompleted(session: Stripe.Checkout.Session) {
        VALUES ($1, $2, $3, $4)`,
       [userId, pack, credits, session.id],
     );
+    sendCreditPackConfirmed(email, credits);
     return;
   }
 
@@ -113,6 +120,7 @@ async function onCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   // Sync tier onto user row for fast entitlement checks
   await query('UPDATE users SET tier = $1 WHERE id = $2', [tier, userId]);
+  sendSubscriptionStarted(email, tier);
 }
 
 async function onSubscriptionUpdated(sub: Stripe.Subscription) {
@@ -138,15 +146,25 @@ async function onSubscriptionUpdated(sub: Stripe.Subscription) {
 }
 
 async function onSubscriptionDeleted(sub: Stripe.Subscription) {
+  const priceId = sub.items.data[0]?.price.id;
+  const tier = PRICE_TO_TIER[priceId] ?? 'starter';
+
   await query(
     `UPDATE subscriptions SET status = 'canceled', updated_at = NOW()
      WHERE stripe_subscription_id = $1`,
     [sub.id],
   );
   // Downgrade user to free
-  const result = await query('SELECT user_id FROM subscriptions WHERE stripe_subscription_id = $1', [sub.id]);
-  const userId = result.rows[0]?.user_id;
-  if (userId) await query("UPDATE users SET tier = 'free' WHERE id = $1", [userId]);
+  const result = await query(
+    `SELECT u.id, u.email FROM subscriptions s JOIN users u ON u.id = s.user_id
+     WHERE s.stripe_subscription_id = $1`,
+    [sub.id],
+  );
+  const user = result.rows[0];
+  if (user) {
+    await query("UPDATE users SET tier = 'free' WHERE id = $1", [user.id]);
+    sendSubscriptionCanceled(user.email, tier);
+  }
 }
 
 async function onInvoicePaid(invoice: Stripe.Invoice) {
@@ -167,6 +185,13 @@ async function onInvoicePaymentFailed(invoice: Stripe.Invoice) {
      WHERE stripe_subscription_id = $1`,
     [subscriptionId],
   );
+  const result = await query(
+    `SELECT u.email, s.tier FROM subscriptions s JOIN users u ON u.id = s.user_id
+     WHERE s.stripe_subscription_id = $1`,
+    [subscriptionId],
+  );
+  const row = result.rows[0];
+  if (row) sendPaymentFailed(row.email, row.tier);
 }
 
 export default router;

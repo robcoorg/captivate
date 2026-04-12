@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Keep app routes private from crawlers
+Disallow: /dashboard
+Disallow: /access
+Disallow: /api/
+
+Sitemap: https://captivate.icu/sitemap.xml

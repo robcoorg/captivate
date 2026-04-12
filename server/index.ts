@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import projectsRouter from './routes/routes/projects.js';
@@ -8,12 +9,14 @@ import runsRouter from './routes/routes/runs.js';
 import approvalsRouter from './routes/routes/approvals.js';
 import billingRouter from './routes/routes/billing.js';
 import webhookRouter from './routes/routes/webhook.js';
+import authRouter from './routes/routes/auth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(cookieParser());
 
 // Raw body required for Stripe webhook signature verification — must be before express.json()
 app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
@@ -24,6 +27,7 @@ app.use('/api/projects', projectsRouter);
 app.use('/api/tasks', tasksRouter);
 app.use('/api/runs', runsRouter);
 app.use('/api/approvals', approvalsRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/billing', billingRouter);
 app.use('/api/stripe/webhook', webhookRouter);
 

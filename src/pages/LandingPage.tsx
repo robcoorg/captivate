@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../lib/auth'
 
 async function startCheckout(tier: string) {
   const res = await fetch('/api/billing/checkout', {
@@ -30,16 +31,23 @@ async function startCreditCheckout(pack: string) {
 }
 
 export default function LandingPage() {
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const dest = user ? '/dashboard' : '/access'
+
   const [loadingTier, setLoadingTier] = useState<string | null>(null)
   const [loadingPack, setLoadingPack] = useState<string | null>(null)
 
   const handleTierClick = async (tier: string | null) => {
-    if (!tier) return
+    if (!tier) { navigate(dest); return }
+    // Paid tiers: must be signed in first; if not, send to /access
+    if (!user) { navigate('/access'); return }
     setLoadingTier(tier)
     try { await startCheckout(tier) } finally { setLoadingTier(null) }
   }
 
   const handlePackClick = async (pack: string) => {
+    if (!user) { navigate('/access'); return }
     setLoadingPack(pack)
     try { await startCreditCheckout(pack) } finally { setLoadingPack(null) }
   }
@@ -59,11 +67,11 @@ export default function LandingPage() {
             <a href="#pricing" className="hover:text-white transition">Pricing</a>
           </nav>
           <div className="flex items-center gap-3">
-            <Link to="/dashboard" className="text-sm text-gray-400 hover:text-white transition px-3 py-2">
-              Sign In
+            <Link to={dest} className="text-sm text-gray-400 hover:text-white transition px-3 py-2">
+              {user ? 'Dashboard' : 'Sign In'}
             </Link>
-            <Link to="/dashboard" className="text-sm font-semibold bg-[#D4A017] hover:bg-[#F0C040] text-black px-5 py-2 rounded transition">
-              Start Free
+            <Link to={dest} className="text-sm font-semibold bg-[#D4A017] hover:bg-[#F0C040] text-black px-5 py-2 rounded transition">
+              {user ? 'Go to App' : 'Start Free'}
             </Link>
           </div>
         </div>
@@ -90,8 +98,8 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Link to="/dashboard" className="inline-flex items-center justify-center gap-2 bg-[#D4A017] hover:bg-[#F0C040] text-black font-bold px-8 py-4 rounded-lg text-base transition">
-              Start Building Free →
+            <Link to={dest} className="inline-flex items-center justify-center gap-2 bg-[#D4A017] hover:bg-[#F0C040] text-black font-bold px-8 py-4 rounded-lg text-base transition">
+              {user ? 'Go to Dashboard →' : 'Start Building Free →'}
             </Link>
             <a href="#how-it-works" className="inline-flex items-center justify-center gap-2 border border-[#2A2A2A] hover:border-[#D4A017]/50 text-gray-300 hover:text-white font-medium px-8 py-4 rounded-lg text-base transition">
               See How It Works
@@ -294,30 +302,17 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                {p.tier ? (
-                  <button
-                    onClick={() => handleTierClick(p.tier)}
-                    disabled={loadingTier === p.tier}
-                    className={`block w-full text-center font-bold py-3 rounded-lg transition disabled:opacity-60 ${
-                      p.highlight
-                        ? 'bg-black text-[#D4A017] hover:bg-black/80'
-                        : 'bg-[#D4A017] text-black hover:bg-[#F0C040]'
-                    }`}
-                  >
-                    {loadingTier === p.tier ? 'Loading…' : p.cta}
-                  </button>
-                ) : (
-                  <Link
-                    to="/dashboard"
-                    className={`block text-center font-bold py-3 rounded-lg transition ${
-                      p.highlight
-                        ? 'bg-black text-[#D4A017] hover:bg-black/80'
-                        : 'bg-[#D4A017] text-black hover:bg-[#F0C040]'
-                    }`}
-                  >
-                    {p.cta}
-                  </Link>
-                )}
+                <button
+                  onClick={() => handleTierClick(p.tier)}
+                  disabled={!!p.tier && loadingTier === p.tier}
+                  className={`block w-full text-center font-bold py-3 rounded-lg transition disabled:opacity-60 ${
+                    p.highlight
+                      ? 'bg-black text-[#D4A017] hover:bg-black/80'
+                      : 'bg-[#D4A017] text-black hover:bg-[#F0C040]'
+                  }`}
+                >
+                  {p.tier && loadingTier === p.tier ? 'Loading…' : p.cta}
+                </button>
               </div>
             ))}
           </div>
@@ -358,8 +353,8 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-black mb-6">Ready to build<br /><span className="text-[#D4A017]">faster?</span></h2>
           <p className="text-gray-400 text-lg mb-10">Join agencies already using NanoStudio to deliver more sites with less effort.</p>
-          <Link to="/dashboard" className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#F0C040] text-black font-bold px-10 py-4 rounded-lg text-lg transition">
-            Start Building Free →
+          <Link to={dest} className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#F0C040] text-black font-bold px-10 py-4 rounded-lg text-lg transition">
+            {user ? 'Go to Dashboard →' : 'Start Building Free →'}
           </Link>
         </div>
       </section>
