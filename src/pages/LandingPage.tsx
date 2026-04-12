@@ -1,6 +1,49 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+async function startCheckout(tier: string) {
+  const res = await fetch('/api/billing/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      tier,
+      successUrl: `${window.location.origin}/dashboard`,
+      cancelUrl: `${window.location.origin}/#pricing`,
+    }),
+  })
+  const data = await res.json()
+  if (data.url) window.location.href = data.url
+}
+
+async function startCreditCheckout(pack: string) {
+  const res = await fetch('/api/billing/credits', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      pack,
+      successUrl: `${window.location.origin}/dashboard`,
+      cancelUrl: `${window.location.origin}/#pricing`,
+    }),
+  })
+  const data = await res.json()
+  if (data.url) window.location.href = data.url
+}
+
 export default function LandingPage() {
+  const [loadingTier, setLoadingTier] = useState<string | null>(null)
+  const [loadingPack, setLoadingPack] = useState<string | null>(null)
+
+  const handleTierClick = async (tier: string | null) => {
+    if (!tier) return
+    setLoadingTier(tier)
+    try { await startCheckout(tier) } finally { setLoadingTier(null) }
+  }
+
+  const handlePackClick = async (pack: string) => {
+    setLoadingPack(pack)
+    try { await startCreditCheckout(pack) } finally { setLoadingPack(null) }
+  }
+
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-['Outfit']">
 
@@ -120,10 +163,10 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               { title: 'AI Copy Generation', desc: 'Claude writes headline copy, body text, CTAs, and meta descriptions based on your brief — not generic templates.' },
-              { title: 'Approval Gate', desc: 'Every AI output goes through your review queue before anything ships. You\'re always the final decision-maker.' },
+              { title: 'Approval Gate', desc: "Every AI output goes through your review queue before anything ships. You're always the final decision-maker." },
               { title: 'Task Queue & History', desc: 'Track every site brief, run, revision, and approval in one place. Never lose context on a client project.' },
               { title: 'Cost & Speed Tracking', desc: 'See exactly how long each generation took and what it cost. Know your margins on every project.' },
-              { title: 'Revision Workflow', desc: 'Reject a run with notes, and Claude will revise based on your feedback. Iterate until it\'s right.' },
+              { title: 'Revision Workflow', desc: "Reject a run with notes, and Claude will revise based on your feedback. Iterate until it's right." },
               { title: 'Multi-Project', desc: 'Manage dozens of client projects simultaneously from a single cockpit. Each project gets its own isolated task queue.' },
             ].map(f => (
               <div key={f.title} className="flex gap-4 p-6 bg-[#111111] border border-[#2A2A2A] rounded-xl hover:border-[#D4A017]/30 transition">
@@ -143,57 +186,169 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-4">Pricing</p>
           <h2 className="text-4xl md:text-5xl font-black mb-4">Simple, honest pricing.</h2>
-          <p className="text-gray-400 mb-16 text-lg">Pay per project or go monthly. No hidden fees. Cancel anytime.</p>
+          <p className="text-gray-400 mb-16 text-lg">No hidden fees. Cancel anytime. Credits roll over.</p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
             {[
               {
-                name: 'Starter',
-                price: '$49',
-                period: '/mo',
-                desc: 'For freelancers building 1–5 sites per month.',
-                features: ['5 site briefs/month', '10 Claude runs', 'Approval gate', 'Project history'],
-                cta: 'Get Started',
+                name: 'Free',
+                price: '$0',
+                period: 'forever',
+                badge: '5 CREDITS / DAY · 25 / MO',
+                desc: 'For individuals exploring AI site generation.',
+                features: [
+                  '5 credits/day · 25/mo',
+                  '25 exports/month',
+                  'Single-file HTML output',
+                  'Qwen 3 generation',
+                  'Brand voice system prompt',
+                  'Credit rollover',
+                ],
+                cta: 'Start Free',
                 highlight: false,
+                tier: null,
+              },
+              {
+                name: 'Starter',
+                price: '$12',
+                period: '/mo',
+                badge: '100 CREDITS + 5/DAY · ROLLOVER',
+                desc: 'For freelancers building client sites regularly.',
+                features: [
+                  '~150 credits/month',
+                  '~150 exports/month',
+                  'Single-file HTML output',
+                  'Qwen 3 + Claude fallback',
+                  'Brand voice system prompt',
+                  'Credits roll over',
+                ],
+                cta: 'Get Starter',
+                highlight: true,
+                tier: 'starter',
+              },
+              {
+                name: 'Pro',
+                price: '$40',
+                period: '/mo',
+                badge: '500 CREDITS / MO · FULL API',
+                desc: 'For agencies running multiple client projects.',
+                features: [
+                  '500 credits/month',
+                  '500 exports/month',
+                  'Single-file HTML output',
+                  'Qwen 3 + Claude fallback',
+                  'Brand voice system prompt',
+                  'Full API access',
+                ],
+                cta: 'Get Pro',
+                highlight: false,
+                tier: 'pro',
               },
               {
                 name: 'Studio',
-                price: '$149',
+                price: '$90',
                 period: '/mo',
-                desc: 'For agencies running multiple client projects.',
-                features: ['Unlimited briefs', '50 Claude runs', 'Full cockpit', 'Team access (3 seats)', 'Priority support'],
-                cta: 'Start Free Trial',
-                highlight: true,
-              },
-              {
-                name: 'Enterprise',
-                price: 'Custom',
-                period: '',
-                desc: 'For large teams with custom requirements.',
-                features: ['Unlimited everything', 'Custom AI models', 'Dedicated support', 'SLA', 'On-premise option'],
-                cta: 'Contact Us',
+                badge: 'UNLIMITED · WHITE-LABEL',
+                desc: 'Unlimited exports, white-label, and reseller rights.',
+                features: [
+                  'Unlimited exports',
+                  'Single-file HTML output',
+                  'Qwen 3 + Claude fallback',
+                  'Brand voice system prompt',
+                  'Full API access',
+                  'White-label + reseller rights',
+                ],
+                cta: 'Get Studio',
                 highlight: false,
+                tier: 'studio',
               },
             ].map(p => (
-              <div key={p.name} className={`rounded-xl p-8 border ${p.highlight ? 'bg-[#D4A017] text-black border-[#D4A017]' : 'bg-[#111111] text-white border-[#2A2A2A]'}`}>
-                <p className={`text-sm font-semibold uppercase tracking-widest mb-2 ${p.highlight ? 'text-black/70' : 'text-[#D4A017]'}`}>{p.name}</p>
+              <div
+                key={p.name}
+                className={`relative rounded-xl p-8 border flex flex-col ${
+                  p.highlight
+                    ? 'bg-[#D4A017] text-black border-[#D4A017]'
+                    : 'bg-[#111111] text-white border-[#2A2A2A]'
+                }`}
+              >
+                {p.highlight && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-[#D4A017] text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-[#D4A017]">
+                    Most Popular
+                  </span>
+                )}
+                <p className={`text-[10px] font-bold uppercase tracking-widest mb-3 ${p.highlight ? 'text-black/60' : 'text-[#D4A017]'}`}>
+                  {p.badge}
+                </p>
+                <p className={`text-sm font-semibold uppercase tracking-widest mb-2 ${p.highlight ? 'text-black/70' : 'text-gray-300'}`}>
+                  {p.name}
+                </p>
                 <div className="flex items-end gap-1 mb-2">
                   <span className="text-5xl font-black">{p.price}</span>
                   <span className={`text-lg mb-2 ${p.highlight ? 'text-black/60' : 'text-gray-500'}`}>{p.period}</span>
                 </div>
                 <p className={`text-sm mb-6 ${p.highlight ? 'text-black/70' : 'text-gray-400'}`}>{p.desc}</p>
-                <ul className="space-y-2 mb-8">
+                <ul className="space-y-2 mb-8 flex-1">
                   {p.features.map(f => (
                     <li key={f} className="flex items-center gap-2 text-sm">
                       <span>✓</span> {f}
                     </li>
                   ))}
                 </ul>
-                <Link to="/dashboard" className={`block text-center font-bold py-3 rounded-lg transition ${p.highlight ? 'bg-black text-[#D4A017] hover:bg-black/80' : 'bg-[#D4A017] text-black hover:bg-[#F0C040]'}`}>
-                  {p.cta}
-                </Link>
+                {p.tier ? (
+                  <button
+                    onClick={() => handleTierClick(p.tier)}
+                    disabled={loadingTier === p.tier}
+                    className={`block w-full text-center font-bold py-3 rounded-lg transition disabled:opacity-60 ${
+                      p.highlight
+                        ? 'bg-black text-[#D4A017] hover:bg-black/80'
+                        : 'bg-[#D4A017] text-black hover:bg-[#F0C040]'
+                    }`}
+                  >
+                    {loadingTier === p.tier ? 'Loading…' : p.cta}
+                  </button>
+                ) : (
+                  <Link
+                    to="/dashboard"
+                    className={`block text-center font-bold py-3 rounded-lg transition ${
+                      p.highlight
+                        ? 'bg-black text-[#D4A017] hover:bg-black/80'
+                        : 'bg-[#D4A017] text-black hover:bg-[#F0C040]'
+                    }`}
+                  >
+                    {p.cta}
+                  </Link>
+                )}
               </div>
             ))}
+          </div>
+
+          {/* Credit Packs */}
+          <div className="border-t border-[#2A2A2A] pt-16">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">No Subscription? No Problem.</p>
+            <h3 className="text-3xl font-black mb-2">Pay-as-you-go credit packs</h3>
+            <p className="text-gray-400 mb-10">Credits never expire. Stack them. Use them whenever.</p>
+
+            <div className="grid sm:grid-cols-3 gap-6">
+              {[
+                { pack: 'credits_50',  exports: 50,  price: '$15', rate: '$0.30 / export' },
+                { pack: 'credits_150', exports: 150, price: '$35', rate: '$0.23 / export' },
+                { pack: 'credits_500', exports: 500, price: '$99', rate: '$0.20 / export' },
+              ].map(p => (
+                <div key={p.pack} className="bg-[#111111] border border-[#2A2A2A] rounded-xl p-8 flex flex-col">
+                  <p className="text-4xl font-black mb-1">{p.exports}</p>
+                  <p className="text-gray-400 text-sm mb-4">Site Exports</p>
+                  <p className="text-3xl font-black text-[#D4A017] mb-1">{p.price}</p>
+                  <p className="text-gray-500 text-xs mb-8">{p.rate}</p>
+                  <button
+                    onClick={() => handlePackClick(p.pack)}
+                    disabled={loadingPack === p.pack}
+                    className="mt-auto w-full bg-[#D4A017] hover:bg-[#F0C040] text-black font-bold py-3 rounded-lg transition disabled:opacity-60"
+                  >
+                    {loadingPack === p.pack ? 'Loading…' : 'Buy Credits'}
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -41,3 +41,46 @@ CREATE TABLE IF NOT EXISTS approvals (
   notes TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- ── Billing ──────────────────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS users (
+  id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email              TEXT UNIQUE NOT NULL,
+  stripe_customer_id TEXT UNIQUE,
+  tier               TEXT NOT NULL DEFAULT 'free', -- free | starter | pro | studio
+  created_at         TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS users_email_idx              ON users (email);
+CREATE INDEX IF NOT EXISTS users_stripe_customer_id_idx ON users (stripe_customer_id);
+
+CREATE TABLE IF NOT EXISTS subscriptions (
+  id                       UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id                  UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  stripe_subscription_id   TEXT UNIQUE NOT NULL,
+  stripe_price_id          TEXT NOT NULL,
+  tier                     TEXT NOT NULL DEFAULT 'free',
+  status                   TEXT NOT NULL DEFAULT 'active', -- active | past_due | canceled | incomplete
+  current_period_end       TIMESTAMPTZ,
+  credits_used_today       INTEGER NOT NULL DEFAULT 0,
+  credits_used_month       INTEGER NOT NULL DEFAULT 0,
+  last_credit_reset_day    DATE,
+  last_credit_reset_month  DATE,
+  created_at               TIMESTAMPTZ DEFAULT NOW(),
+  updated_at               TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS subscriptions_user_id_idx ON subscriptions (user_id);
+
+-- Append-only ledger for one-time credit pack purchases; never deleted
+CREATE TABLE IF NOT EXISTS credit_ledger (
+  id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id           UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  source            TEXT NOT NULL,          -- e.g. 'credits_50', 'credits_150', 'credits_500'
+  credits           INTEGER NOT NULL,
+  stripe_session_id TEXT UNIQUE NOT NULL,   -- idempotency: ignore duplicate webhook deliveries
+  created_at        TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS credit_ledger_user_id_idx ON credit_ledger (user_id);
