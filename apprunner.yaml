@@ -10,7 +10,7 @@ run:
   command: npm start
   network:
     port: 3000
-    env: APP_PORT
+    env: PORT
   env:
     - name: NODE_ENV
       value: production
